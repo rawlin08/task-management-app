@@ -8,6 +8,7 @@ import { HeadingComponent } from './components/heading.component';
 import { ThemeToggleComponent } from './components/theme-toggle.component';
 import { BoardComponent } from './components/board.component';
 import { CardComponent } from './components/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CardComponent } from './components/card.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
