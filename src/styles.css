@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+/* BOILERPLATE */
+:root {
+    --purple: #635FC7;
+    --light-purple: #A8A4FF;
+    --black: #000112;
+    --black2: #20212C;
+    --black3: #2B2C37;
+    --black4: #3e3f4e;
+    --gray: #828FA3;
+    --light-gray: #797784;
+    --light-gray2: #F4F7FD;
+    --white: #FFFFFF;
+    --red: #EA5555;
+    --light-red: #FF9898;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--black);
+    background-color: var(--light-blue);
+}
+html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    border-bottom: 2px solid var(--mint);
+    padding: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2.2px;
+    font-family: inherit;
+    transition: all .2s ease-in-out;
+}
+h1, h2, h3, p {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
