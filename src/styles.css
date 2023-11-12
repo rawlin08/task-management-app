@@ -31,7 +31,7 @@ button {
     letter-spacing: 1px;
     font-family: inherit;
 }
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
     margin: 0;
 }
 a {
@@ -52,4 +52,5 @@ app-heading {
 app-board {
     display: grid;
     min-height: calc(100vh - 70px);
+    padding: 25px 20px;
 }
