@@ -42,15 +42,25 @@ html, body { height: 100%; }
 
 
 /* COMPONENTS */
+app-root {
+    display: block;
+}
 app-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 16px;
     background-color: var(--dark-gray);
+    color: var(--white);
 }
 app-board {
     display: grid;
     min-height: calc(100vh - 70px);
     padding: 25px 20px;
+    background-color: var(--very-dark-gray);
+    color: var(--white);
+}
+
+@media (min-width: 768px) {
+    
 }
