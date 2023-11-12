@@ -62,5 +62,7 @@ app-board {
 }
 
 @media (min-width: 768px) {
-    
+    app-heading {
+        border-bottom: 1px solid var(--black4);
+    }
 }
