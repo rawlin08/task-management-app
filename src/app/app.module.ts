@@ -10,7 +10,6 @@ import { SidebarComponent } from './components/sidebar.component';
 import { HeadingComponent } from './components/heading.component';
 import { ThemeToggleComponent } from './components/theme-toggle.component';
 import { BoardComponent } from './components/board.component';
-import { CardComponent } from './components/card.component';
 
 // Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -32,7 +31,6 @@ import { DeleteBoardComponent } from './components/delete-board.component';
     HeadingComponent,
     ThemeToggleComponent,
     BoardComponent,
-    CardComponent,
     EmptyBoardComponent,
     NewTaskComponent,
     EditTaskComponent,
