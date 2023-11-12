@@ -3,8 +3,8 @@
     --purple: #635FC7;
     --light-purple: #A8A4FF;
     --black: #000112;
-    --black2: #20212C;
-    --black3: #2B2C37;
+    --very-dark-gray: #20212C;
+    --dark-gray: #2B2C37;
     --black4: #3e3f4e;
     --gray: #828FA3;
     --light-gray: #797784;
@@ -16,8 +16,8 @@
 body {
     margin: 0;
     min-height: 100vh;
-    color: var(--black);
-    background-color: var(--light-blue);
+    color: var(--white);
+    background-color: var(--very-dark-gray);
 }
 html {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -27,13 +27,9 @@ button {
     background-color: transparent;
     border: none;
     color: inherit;
-    border-bottom: 2px solid var(--mint);
-    padding: 0 0 10px 0;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 2.2px;
+    font-size: 18px;
+    letter-spacing: 1px;
     font-family: inherit;
-    transition: all .2s ease-in-out;
 }
 h1, h2, h3, p {
     margin: 0;
@@ -41,4 +37,19 @@ h1, h2, h3, p {
 a {
     text-decoration: none;
     color: inherit;
+}
+html, body { height: 100%; }
+
+
+/* COMPONENTS */
+app-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 16px;
+    background-color: var(--dark-gray);
+}
+app-board {
+    display: grid;
+    min-height: calc(100vh - 70px);
 }
