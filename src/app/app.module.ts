@@ -6,16 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
-import { SidebarComponent } from './components/sidebar.component';
 import { HeadingComponent } from './components/heading.component';
 import { ThemeToggleComponent } from './components/theme-toggle.component';
 import { BoardComponent } from './components/board.component';
-
-// Angular Material
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatMenuModule } from '@angular/material/menu';
-import { EmptyBoardComponent } from './components/empty-board.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { NewTaskComponent } from './components/new-task.component';
 import { EditTaskComponent } from './components/edit-task.component';
 import { ViewTaskComponent } from './components/view-task.component';
@@ -23,11 +16,19 @@ import { NewBoardComponent } from './components/new-board.component';
 import { EditBoardComponent } from './components/edit-board.component';
 import { DeleteTaskComponent } from './components/delete-task.component';
 import { DeleteBoardComponent } from './components/delete-board.component';
+import { EmptyBoardComponent } from './components/empty-board.component';
+
+// Angular Material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     HeadingComponent,
     ThemeToggleComponent,
     BoardComponent,
@@ -46,7 +47,9 @@ import { DeleteBoardComponent } from './components/delete-board.component';
     BrowserAnimationsModule,
     MatSidenavModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
