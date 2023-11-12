@@ -34,9 +34,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.data = todoData;
     this.data = this.data.boards;
+    this.currentBoard = this.data.find((board:any) => board.id == 1);
     console.log(this.data);
+    console.log(this.currentBoard);
+    
   }
 
   data:any;
-  boardEmpty:boolean = true;
+  currentBoard:any;
+  boardEmpty:boolean = false;
 }
