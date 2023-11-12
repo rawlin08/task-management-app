@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
         <h3>{{ column.name }} ({{ column.tasks.length }})</h3>
       </div>
       <div class="tasks">
-        <div class="taskCard" *ngFor="let task of column.tasks">
+        <div class="taskCard" (click)="selectTask(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
           <p>0 of {{ task.subtasks.length }} subtasks</p>
         </div>
@@ -74,4 +74,9 @@ import { AppComponent } from '../app.component';
 })
 export class BoardComponent {
   constructor(public app: AppComponent) {}
+
+  selectTask(task:any) {
+    console.log(task);
+    this.app.currentTask = task;
+  }
 }
