@@ -6,10 +6,9 @@ import { AppComponent } from '../app.component';
   template: `
   <div class="left">
     <img src="assets/images/logo-mobile.svg" alt="">
-    <button mat-button (menuOpened)="this.chevronIcon = 'up'" (menuClosed)="this.chevronIcon = 'down'" [matMenuTriggerFor]="menu">Platform Launch <img class="chevronIcon" [src]="'assets/images/icon-chevron-' + this.chevronIcon + '.svg'" alt=""></button>
-    <mat-menu xPosition="before" yPosition="above" #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+    <button mat-button (menuOpened)="this.chevronIcon = 'up'" (menuClosed)="this.chevronIcon = 'down'" [matMenuTriggerFor]="menu">{{ app.currentBoard.name }} <img class="chevronIcon" [src]="'assets/images/icon-chevron-' + this.chevronIcon + '.svg'" alt=""></button>
+    <mat-menu xPosition="after" #menu="matMenu">
+      <button (click)="app.changeCurrentBoard(board)" *ngFor="let board of app.data" mat-menu-item>{{ board.name }}</button>
     </mat-menu>
   </div>
   <div class="right">
