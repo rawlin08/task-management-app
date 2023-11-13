@@ -30,7 +30,8 @@ import { AppComponent } from '../app.component';
   .board {
     display: flex;
     gap: 24px;
-    overflow: scroll;
+    overflow: auto;
+    padding: 24px;
   }
   .column {
     min-width: 280px;
@@ -43,7 +44,7 @@ import { AppComponent } from '../app.component';
   }
   h3 {
     color: var(--gray);
-    font-size: 15px;
+    font-size: 12px;
     letter-spacing: 2.4px;
     text-transform: uppercase;
     font-weight: 400;
