@@ -20,6 +20,12 @@ import { Component } from '@angular/core';
     font-weight: 500;
     justify-self: center;
   }
+
+  @media (hover: hover) {
+    button:hover {
+      background-color: var(--light-purple);
+    }
+  }
   `]
 })
 export class EmptyBoardComponent {
