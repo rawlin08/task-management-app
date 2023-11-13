@@ -18,6 +18,7 @@ body {
     min-height: 100vh;
     color: var(--white);
     background-color: var(--very-dark-gray);
+    position: relative;
 }
 html {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -38,8 +39,6 @@ a {
     text-decoration: none;
     color: inherit;
 }
-html, body { height: 100%; }
-
 
 /* COMPONENTS */
 app-root {
@@ -55,11 +54,106 @@ app-heading {
 }
 app-board {
     display: grid;
-    min-height: calc(100vh - 70px);
-    padding: 25px 20px;
+    height: calc(100vh - 94px);
     background-color: var(--very-dark-gray);
     color: var(--white);
 }
+.menuStyles {
+    background-color: var(--dark-gray);
+}
+.boardNumber {
+    color: var(--gray);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    padding: 16px 26px;
+}
+.boardBtn, .createNewBoardBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gray);
+    width: 240px;
+    border-radius: 0 28px 28px 0;
+    padding: 0 26px;
+    margin: 0 20px 0 0;
+}
+.createNewBoardBtn {
+    padding: 0 10px 0 26px;
+    color: var(--purple);
+}
+.boardBtn > p, .createNewBoardBtn > p {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 15px 0;
+}
+.selected {
+    background-color: var(--purple);
+    color: var(--white);
+}
+.themeToggleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--very-dark-gray);
+    padding: 20px 0;
+    margin: 16px 16px 10px 16px;
+    gap: 20px;
+    align-self: self-end;
+}
+
+.form-switch {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .form-switch i {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    background-color: var(--purple);
+    border-radius: 23px;
+    vertical-align: text-bottom;
+    transition: all 0.3s linear;
+  }
+  .form-switch i::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 42px;
+    height: 22px;
+    background-color: var(--purple);
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+    transition: all 0.25s linear;
+  }
+  .form-switch i::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--white);
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0);
+    transition: all 0.2s ease-in-out;
+  }
+  .form-switch:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+  }
+  .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
+  .form-switch input { display: none; }
+  .form-switch input:checked + i { background-color: var(--purple); }
+  .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+  .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+  .mat-drawer-inner-container {
+    overflow: unset !important;
+  }
 
 @media (min-width: 768px) {
     app-heading {
