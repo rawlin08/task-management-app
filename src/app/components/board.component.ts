@@ -18,9 +18,25 @@ import { AppComponent } from '../app.component';
         </div>
       </div>
     </div>
+    <button class="newColumnContainer">+ New Column</button>
   </div>
   `,
   styles: [`
+  .newColumnContainer {
+    display: grid;
+    place-content: center;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%);
+    min-width: 280px;
+    margin: 39px 0 0 0;
+    height: 100%;
+    font-size: 24px;
+    color: var(--gray);
+  }
+  .column {
+    min-width: 280px;
+    max-width: 280px;
+  }
   app-empty-board {
     display: grid;
     align-self: center;
@@ -32,9 +48,6 @@ import { AppComponent } from '../app.component';
     gap: 24px;
     overflow: auto;
     padding: 24px;
-  }
-  .column {
-    min-width: 280px;
   }
   .columnName {
     display: flex;
@@ -61,6 +74,7 @@ import { AppComponent } from '../app.component';
     box-shadow: 0px 4px 6px 0px rgba(54, 78, 126, 0.10);
     padding: 23px 16px;
     margin: 0 0 20px 0;
+    max-width: 280px;
   }
   .taskCard > h4 {
     font-size: 15px;
@@ -70,6 +84,14 @@ import { AppComponent } from '../app.component';
   .taskCard > p {
     font-size: 12px;
     color: var(--gray);
+  }
+
+  @media (hover: hover) {
+    .newColumnContainer:hover {
+      background-color: hsla(220, 69%, 97%, 0.1);
+      transition: all .1s ease-in-out;
+      color: var(--purple);
+    }
   }
   `]
 })

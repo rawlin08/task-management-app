@@ -58,8 +58,15 @@ app-board {
     background-color: var(--very-dark-gray);
     color: var(--white);
 }
-.menuStyles {
+.mobile app-board {
+    display: grid;
+    height: calc(100vh - 73px);
+    background-color: var(--very-dark-gray);
+    color: var(--white);
+}
+.menuStyles, .optionStyles {
     background-color: var(--dark-gray);
+    color: var(--gray);
 }
 .boardNumber {
     color: var(--gray);

@@ -28,7 +28,10 @@ import * as todoData from 'src/assets/data.json';
         </label>
         <img src="assets/images/icon-dark-theme.svg" alt="">
       </div>
-      <button class="active" mat-raised-button (click)="toggleSidebar(drawer)"><img src="assets/images/icon-hide-sidebar.svg" alt="">Hide Sidebar</button>
+      <button class="active" mat-raised-button (click)="drawer.toggle()">
+        <img src="assets/images/icon-hide-sidebar.svg" alt="">
+        <p>Hide Sidebar</p>
+      </button>
     </mat-drawer>
     <mat-drawer-content>
       <main>
@@ -37,7 +40,7 @@ import * as todoData from 'src/assets/data.json';
       </main>
     </mat-drawer-content>
   </mat-drawer-container>
-  <button class="inactive" mat-raised-button (click)="toggleSidebar(drawer)"><img src="assets/images/icon-show-sidebar.svg" alt=""></button>
+  <button class="inactive" mat-raised-button (click)="drawer.toggle()"><img src="assets/images/icon-show-sidebar.svg" alt=""></button>
   <div class="mobile">
     <main>
       <app-heading></app-heading>
@@ -52,6 +55,9 @@ import * as todoData from 'src/assets/data.json';
   .mobile {
     display: block;
   }
+  .inactive {
+    display: none;
+  }
 
   /* TABLET STYLES */
   @media (min-width: 768px) {
@@ -59,6 +65,7 @@ import * as todoData from 'src/assets/data.json';
       position: absolute;
       bottom: 53px;
       z-index: 1;
+      display: block;
     }
     .inactive {
       background-color: var(--purple);
@@ -114,10 +121,16 @@ import * as todoData from 'src/assets/data.json';
       height: calc(100vh - 340px);
       overflow: scroll;
     }
-    .sidebarHide {
-      margin: 20px 0 0 52px;
+    .active {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 8px 20px 0 0;
       color: var(--gray);
       font-size: 15px;
+      padding: 16px 32px;
+      border-radius: 0 100px 100px 0;
+      width: 240px;
     }
   }
 
@@ -127,7 +140,7 @@ import * as todoData from 'src/assets/data.json';
   }
 
   @media (hover: hover) {
-    .board:hover {
+    .board:hover, .active:hover {
       background-color: var(--white);
       color: var(--purple);
     }
@@ -155,7 +168,6 @@ export class AppComponent implements OnInit {
   innerWidth:any;
   sidebarOpened = {
     boolean: false,
-    icon: 'show'
   }
 
   @HostListener('window:resize', ['$event'])
@@ -170,15 +182,6 @@ export class AppComponent implements OnInit {
     console.log(board);
   }
   toggleSidebar(drawer:any) {
-    setTimeout(() => {
-      this.sidebarOpened.boolean = drawer._opened;
-      if (this.sidebarOpened.icon == 'hide') {
-        this.sidebarOpened.icon = 'show';
-      }
-      else {
-        this.sidebarOpened.icon = 'hide';
-      }
-    }, 1)
     drawer.toggle();
   }
   toggleTheme(drawer:any) {
