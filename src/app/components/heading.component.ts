@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -7,8 +7,26 @@ import { AppComponent } from '../app.component';
   <div class="left">
     <img src="assets/images/logo-mobile.svg" alt="">
     <button class="boardName" [disabled]="app.innerWidth >= 768" mat-button (menuOpened)="this.chevronIcon = 'up'" (menuClosed)="this.chevronIcon = 'down'" [matMenuTriggerFor]="menu">{{ app.currentBoard.name }} <img class="chevronIcon" [src]="'assets/images/icon-chevron-' + this.chevronIcon + '.svg'" alt=""></button>
-    <mat-menu xPosition="after" #menu="matMenu">
-      <button (click)="app.changeCurrentBoard(board)" *ngFor="let board of app.data" mat-menu-item>{{ board.name }}</button>
+    <mat-menu class="menuStyles" xPosition="after" #menu="matMenu">
+      <div class="boards">
+        <h3 class="boardNumber">All Boards ({{ app.data.length }})</h3>
+        <button (click)="app.changeCurrentBoard(board)" class="boardBtn" *ngFor="let board of app.data">
+          <img src="assets/images/icon-board.svg" alt="">
+          <p class="boardName">{{ board.name }}</p>
+        </button>
+        <button class="createNewBoardBtn">
+          <img class="boardIcon" src="assets/images/icon-board.svg" alt="">
+          <p>+ Create New Board</p>
+        </button>
+      </div>
+      <div class="themeToggleContainer">
+        <img src="assets/images/icon-light-theme.svg" alt="">
+        <label class="form-switch">
+          <input type="checkbox">
+          <i></i>
+        </label>
+        <img src="assets/images/icon-dark-theme.svg" alt="">
+      </div>
     </mat-menu>
   </div>
   <div class="right">
@@ -48,11 +66,15 @@ import { AppComponent } from '../app.component';
   }
 
   @media (min-width: 768px) {
+    .boardName {
+      font-size: 20px;
+      font-weight: 600;
+    }
     .chevronIcon {
       display: none;
     }
     .boardName:disabled {
-      cursor: none;
+      cursor: auto;
     }
     .left > img {
       display: none;
@@ -72,6 +94,6 @@ import { AppComponent } from '../app.component';
 })
 export class HeadingComponent {
   constructor(public app: AppComponent) {}
-  
+
   chevronIcon:any = 'down';
 }
