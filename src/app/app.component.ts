@@ -4,29 +4,40 @@ import * as todoData from 'src/assets/data.json';
 @Component({
   selector: 'app-root',
   template: `
-  <mat-drawer-container class="example-container" [hasBackdrop]="false">
+  <mat-drawer-container  class="example-container" [hasBackdrop]="false">
     <mat-drawer #drawer mode="side">
       <img class="logo" [src]="'assets/images/logo-light.svg'">
       <div class="boards">
         <h3>All Boards ({{ data.length }})</h3>
-        <button (click)="changeCurrentBoard(board)" class="board" *ngFor="let board of data">
-          <img src="assets/images/icon-board.svg" alt="">
-          <p>{{ board.name }}</p>
-        </button>
-        <button class="createNewBoardBtn">
-          <img class="boardIcon" src="assets/images/icon-board.svg" alt="">
-          <p>+ Create New Board</p>
-        </button>
+        <div class="boardsContainer">
+          <button (click)="changeCurrentBoard(board)" class="board" *ngFor="let board of data">
+            <img src="assets/images/icon-board.svg" alt="">
+            <p>{{ board.name }}</p>
+          </button>
+          <button class="createNewBoardBtn">
+            <img class="boardIcon" src="assets/images/icon-board.svg" alt="">
+            <p>+ Create New Board</p>
+          </button>
+        </div>
       </div>
+      <div class="themeToggleContainer">
+        <img src="assets/images/icon-light-theme.svg" alt="">
+        <label class="form-switch">
+          <input type="checkbox">
+          <i></i>
+        </label>
+        <img src="assets/images/icon-dark-theme.svg" alt="">
+      </div>
+      <button class="active" mat-raised-button (click)="toggleSidebar(drawer)"><img src="assets/images/icon-hide-sidebar.svg" alt="">Hide Sidebar</button>
     </mat-drawer>
     <mat-drawer-content>
       <main>
         <app-heading></app-heading>
-        <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
         <app-board></app-board>
       </main>
     </mat-drawer-content>
   </mat-drawer-container>
+  <button class="inactive" mat-raised-button (click)="toggleSidebar(drawer)"><img src="assets/images/icon-show-sidebar.svg" alt=""></button>
   <div class="mobile">
     <main>
       <app-heading></app-heading>
@@ -44,12 +55,23 @@ import * as todoData from 'src/assets/data.json';
 
   /* TABLET STYLES */
   @media (min-width: 768px) {
+    .inactive {
+      position: absolute;
+      bottom: 53px;
+      z-index: 1;
+    }
+    .inactive {
+      background-color: var(--purple);
+      border-radius: 0 100px 100px 0;
+      padding: 15px;
+    }
     mat-drawer-container {
       display: block;
     }
     mat-drawer {
       background-color: var(--dark-gray);
       border-right: 1px solid var(--black4);
+      overflow-y: unset !important;
     }
     .mobile {
       display: none;
@@ -88,6 +110,15 @@ import * as todoData from 'src/assets/data.json';
       background-color: var(--purple);
       color: var(--white);
     }
+    .boardsContainer {
+      height: calc(100vh - 340px);
+      overflow: scroll;
+    }
+    .sidebarHide {
+      margin: 20px 0 0 52px;
+      color: var(--gray);
+      font-size: 15px;
+    }
   }
 
   /* DESKTOP STYLES */
@@ -102,7 +133,6 @@ import * as todoData from 'src/assets/data.json';
     }
     .createNewBoardBtn:hover {
       background-color: var(--white);
-
     }
   }
   `]
@@ -123,6 +153,10 @@ export class AppComponent implements OnInit {
   currentTask:any;
   boardEmpty:boolean = false;
   innerWidth:any;
+  sidebarOpened = {
+    boolean: false,
+    icon: 'show'
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -134,5 +168,19 @@ export class AppComponent implements OnInit {
   changeCurrentBoard(board:any) {
     this.currentBoard = board;
     console.log(board);
+  }
+  toggleSidebar(drawer:any) {
+    setTimeout(() => {
+      this.sidebarOpened.boolean = drawer._opened;
+      if (this.sidebarOpened.icon == 'hide') {
+        this.sidebarOpened.icon = 'show';
+      }
+      else {
+        this.sidebarOpened.icon = 'hide';
+      }
+    }, 1)
+    drawer.toggle();
+  }
+  toggleTheme(drawer:any) {
   }
 }
