@@ -1,5 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgFor } from '@angular/common';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+
+// Interfaces
+export interface viewTaskData {
+  title:any,
+  description:any,
+  subtasks:any;
+  status:any;
+}
 
 @Component({
   selector: 'app-board',
@@ -96,10 +108,23 @@ import { AppComponent } from '../app.component';
   `]
 })
 export class BoardComponent {
-  constructor(public app: AppComponent) {}
+  constructor(public app: AppComponent, public dialog: MatDialog) {}
 
   selectTask(task:any) {
     console.log(task);
     this.app.currentTask = task;
+    this.dialog.open(viewTaskDialog, {
+      data: this.app.currentTask
+    })
   }
+}
+
+@Component({
+  selector: 'view-task-dialog',
+  templateUrl: './templates/view-task-dialog.html',
+  standalone: true,
+  imports: [MatDialogModule, MatCheckboxModule, MatSelectModule, NgFor],
+})
+export class viewTaskDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: viewTaskData) {}
 }
