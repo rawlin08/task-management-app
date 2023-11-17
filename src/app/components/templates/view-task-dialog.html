@@ -1,0 +1,13 @@
+<div class="dialog">
+    <h3>{{ data.title }}</h3>
+    <p>{{ data.description }}</p>
+    <div>
+        <p>Subtasks (0 of {{ data.subtasks.length }})</p>
+        <div class="subtask">
+            <p *ngFor="let subtask of data.subtasks"><mat-checkbox>{{ subtask.title }}</mat-checkbox></p>
+        </div>
+    </div>
+    <div>
+        <p>Current Status</p>
+    </div>
+</div>
