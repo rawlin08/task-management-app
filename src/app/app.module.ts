@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeadingComponent } from './components/heading.component';
 import { ThemeToggleComponent } from './components/theme-toggle.component';
 import { BoardComponent } from './components/board.component';
-import { NewTaskComponent } from './components/new-task.component';
 import { EditTaskComponent } from './components/edit-task.component';
 import { ViewTaskComponent } from './components/view-task.component';
 import { NewBoardComponent } from './components/new-board.component';
@@ -33,7 +32,6 @@ import { MatSelectModule } from '@angular/material/select';
     ThemeToggleComponent,
     BoardComponent,
     EmptyBoardComponent,
-    NewTaskComponent,
     EditTaskComponent,
     ViewTaskComponent,
     NewBoardComponent,
