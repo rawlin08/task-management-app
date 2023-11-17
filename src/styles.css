@@ -110,6 +110,12 @@ app-board {
     align-self: self-end;
 }
 
+.dialog {
+    background-color: var(--dark-gray);
+    padding: 24px;
+    color: var(--white);
+}
+
 .form-switch {
     display: inline-block;
     cursor: pointer;
