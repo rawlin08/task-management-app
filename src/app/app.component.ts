@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as todoData from 'src/assets/data.json';
-import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/new-board-dialog.component';
+import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 
 @Component({
   selector: 'app-root',
