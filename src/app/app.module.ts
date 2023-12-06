@@ -23,7 +23,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/new-board-dialog.component';
+import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
+import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/n
     EditBoardComponent,
     DeleteTaskComponent,
     DeleteBoardComponent,
-    NewBoardDialogComponent
+    NewBoardDialogComponent,
+    DeleteBoardDialogComponent
   ],
   imports: [
     BrowserModule,
