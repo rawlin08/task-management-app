@@ -58,6 +58,9 @@ app-board {
     background-color: var(--very-dark-gray);
     color: var(--white);
 }
+new-board-dialog {
+    display: block;
+}
 .mobile app-board {
     display: grid;
     height: calc(100vh - 73px);
@@ -110,10 +113,34 @@ app-board {
     align-self: self-end;
 }
 
+/* DIALOG STYLES */
 .dialog {
     background-color: var(--dark-gray);
     padding: 24px;
     color: var(--white);
+}
+.dialog > h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 24px 0;
+}
+.dialog .input {
+    display: grid;
+    gap: 8px;
+}
+.dialog input[type="text"] {
+    border-radius: 4px;
+    background-color: var(--dark-gray);
+    color: var(--white);
+    border: 1px solid var(--gray);
+    padding: 8px 16px;
+}
+.dialog input[type="text"]:focus {
+    outline: none;
+}
+.dialog label {
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .form-switch {
