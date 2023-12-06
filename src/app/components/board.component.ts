@@ -24,7 +24,7 @@ export interface viewTaskData {
         <h3>{{ column.name }} ({{ column.tasks.length }})</h3>
       </div>
       <div class="tasks">
-        <div class="taskCard" (click)="selectTask(task)" *ngFor="let task of column.tasks">
+        <div class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
           <p>0 of {{ task.subtasks.length }} subtasks</p>
         </div>
@@ -110,21 +110,4 @@ export interface viewTaskData {
 export class BoardComponent {
   constructor(public app: AppComponent, public dialog: MatDialog) {}
 
-  selectTask(task:any) {
-    console.log(task);
-    this.app.currentTask = task;
-    this.dialog.open(viewTaskDialog, {
-      data: this.app.currentTask
-    })
-  }
-}
-
-@Component({
-  selector: 'view-task-dialog',
-  templateUrl: './templates/view-task-dialog.html',
-  standalone: true,
-  imports: [MatDialogModule, MatCheckboxModule, MatSelectModule, NgFor],
-})
-export class viewTaskDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: viewTaskData) {}
 }
