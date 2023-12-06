@@ -1,5 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as todoData from 'src/assets/data.json';
+import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/new-board-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,11 @@ import * as todoData from 'src/assets/data.json';
       <div class="boards">
         <h3>All Boards ({{ data.length }})</h3>
         <div class="boardsContainer">
-          <button (click)="changeCurrentBoard(board)" class="board" *ngFor="let board of data">
+          <button [classList]="currentBoard.id == board.id ? 'board selected' : 'board'" (click)="changeCurrentBoard(board)" *ngFor="let board of data">
             <img src="assets/images/icon-board.svg" alt="">
             <p>{{ board.name }}</p>
           </button>
-          <button class="createNewBoardBtn">
+          <button (click)="openNewBoardDialog()" class="createNewBoardBtn">
             <img class="boardIcon" src="assets/images/icon-board.svg" alt="">
             <p>+ Create New Board</p>
           </button>
@@ -152,13 +154,23 @@ import * as todoData from 'src/assets/data.json';
 })
 export class AppComponent implements OnInit {
   title = 'task-management-app';
-  constructor() {}
+  constructor(public dialog: MatDialog, public newBoardDialog: NewBoardDialogComponent) {}
   ngOnInit(): void {
-    this.data = todoData;
-    this.data = this.data.boards;
+    // LOCAL STORAGE
+    this.data = JSON.parse(localStorage.getItem('boards')!);
+    if (!this.data) {
+      console.log('LOCAL STORAGE NOT FOUND!');
+      let boards = todoData;
+      localStorage.setItem('boards', JSON.stringify(boards.boards));
+      this.data = boards.boards;
+    }
+    else {
+      console.log('LOCAL STORAGE FOUND!');
+    }
+
     this.currentBoard = this.data.find((board:any) => board.id == 1);
     console.log(this.data);
-    console.log(this.currentBoard);
+    console.log(this.currentBoard);  
   }
 
   data:any;
@@ -177,6 +189,9 @@ export class AppComponent implements OnInit {
     
   }
 
+  updateLocalStorage() {
+    localStorage.setItem('boards', JSON.stringify(this.data.boards));
+  }
   changeCurrentBoard(board:any) {
     this.currentBoard = board;
     console.log(board);
@@ -185,5 +200,23 @@ export class AppComponent implements OnInit {
     drawer.toggle();
   }
   toggleTheme(drawer:any) {
+  }
+
+  openNewBoardDialog() {
+    let newBoardDialogRef = this.dialog.open(NewBoardDialogComponent, {
+      width: '100%',
+    });
+
+    newBoardDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result != undefined) {
+        this.data = JSON.parse(localStorage.getItem('boards')!);
+        console.log(this.data);
+        this.currentBoard = this.data.find((board:any) => board.id == this.data.length);
+        console.log(this.currentBoard);
+      }
+    });
+    
+    
   }
 }
