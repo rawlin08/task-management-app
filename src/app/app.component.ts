@@ -2,6 +2,8 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as todoData from 'src/assets/data.json';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
+import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
+import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -182,26 +184,7 @@ export class AppComponent implements OnInit {
     boolean: false,
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerWidth = event.target.innerWidth;
-    console.log(this.innerWidth);
-    
-  }
-
-  updateLocalStorage() {
-    localStorage.setItem('boards', JSON.stringify(this.data.boards));
-  }
-  changeCurrentBoard(board:any) {
-    this.currentBoard = board;
-    console.log(board);
-  }
-  toggleSidebar(drawer:any) {
-    drawer.toggle();
-  }
-  toggleTheme(drawer:any) {
-  }
-
+  // Dialogs
   openNewBoardDialog() {
     let newBoardDialogRef = this.dialog.open(NewBoardDialogComponent, {
       width: '100%',
@@ -216,7 +199,53 @@ export class AppComponent implements OnInit {
         console.log(this.currentBoard);
       }
     });
+  };
+  openDeleteBoardDialog() {
+    let deleteBoardDialogRef = this.dialog.open(DeleteBoardDialogComponent, {
+      width: '100%',
+      data: this.currentBoard
+    });
+
+    deleteBoardDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result == 'delete') {
+        this.data = this.data.filter((board:any) => board.id != this.currentBoard.id);
+        this.currentBoard = this.data[0];
+        this.updateLocalStorage();
+      }
+    }); 
+  };
+  openDeleteTaskDialog() {
+    let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
+      width: '100%',
+      data: this.currentTask
+    });
+
+    deleteTaskDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result != 'delete') {
+        
+      }
+    }); 
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = event.target.innerWidth;
+    console.log(this.innerWidth);
     
-    
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('boards', JSON.stringify(this.data));
+  }
+  changeCurrentBoard(board:any) {
+    this.currentBoard = board;
+    console.log(board);
+  }
+  toggleSidebar(drawer:any) {
+    drawer.toggle();
+  }
+  toggleTheme(drawer:any) {
   }
 }
