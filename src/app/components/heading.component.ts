@@ -1,5 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { NewBoardDialogComponent } from './dialogs/new-board-dialog/new-board-dialog.component';
+
+// Interfaces
+
 
 @Component({
   selector: 'app-heading',
@@ -14,7 +19,7 @@ import { AppComponent } from '../app.component';
           <img src="assets/images/icon-board.svg" alt="">
           <p class="boardName">{{ board.name }}</p>
         </button>
-        <button class="createNewBoardBtn">
+        <button (click)="app.openNewBoardDialog()" class="createNewBoardBtn">
           <img class="boardIcon" src="assets/images/icon-board.svg" alt="">
           <p>+ Create New Board</p>
         </button>
@@ -119,7 +124,22 @@ import { AppComponent } from '../app.component';
   `]
 })
 export class HeadingComponent {
-  constructor(public app: AppComponent) {}
+  constructor(public app: AppComponent, public dialog: MatDialog) {}
 
   chevronIcon:any = 'down';
+
+  // Dialogs
+  openNewTaskDialog() {
+    this.dialog.open(newTaskDialog);
+  }
+}
+
+@Component({
+  selector: 'new-task-dialog',
+  templateUrl: './templates/new-task-dialog.html',
+  standalone: true,
+  imports: [MatDialogModule],
+})
+export class newTaskDialog {
+  constructor() {}
 }
