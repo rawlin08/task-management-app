@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-// Interfaces
-
-
 @Component({
   selector: 'app-heading',
   template: `
@@ -39,7 +36,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     <mat-menu class="optionStyles" #options="matMenu">
       <div class="optionsBtns">
         <button class="editBoardBtn">Edit Board</button>
-        <button class="deleteBoardBtn">Delete Board</button>
+        <button (click)="app.openDeleteBoardDialog()" class="deleteBoardBtn">Delete Board</button>
       </div>
     </mat-menu>
   </div>
