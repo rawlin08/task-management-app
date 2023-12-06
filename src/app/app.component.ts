@@ -4,6 +4,7 @@ import * as todoData from 'src/assets/data.json';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
 import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
+import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -215,18 +216,13 @@ export class AppComponent implements OnInit {
       }
     }); 
   };
-  openDeleteTaskDialog() {
-    let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
+  openViewTaskDialog(task:any) {
+    console.log(task);
+    this.currentTask = task;
+    this.dialog.open(ViewTaskDialogComponent, {
       width: '100%',
-      data: this.currentTask
-    });
-
-    deleteTaskDialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      if (result != 'delete') {
-        
-      }
-    }); 
+      data: [this.currentTask, this.currentBoard, this.data]
+    })
   }
 
   @HostListener('window:resize', ['$event'])
