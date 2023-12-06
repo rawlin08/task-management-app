@@ -25,6 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
+import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-di
     DeleteTaskComponent,
     DeleteBoardComponent,
     NewBoardDialogComponent,
-    DeleteBoardDialogComponent
+    DeleteBoardDialogComponent,
+    DeleteTaskDialogComponent
   ],
   imports: [
     BrowserModule,
