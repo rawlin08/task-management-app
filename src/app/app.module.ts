@@ -23,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/new-board-dialog.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
     NewBoardComponent,
     EditBoardComponent,
     DeleteTaskComponent,
-    DeleteBoardComponent
+    DeleteBoardComponent,
+    NewBoardDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [AppComponent, NewBoardDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
