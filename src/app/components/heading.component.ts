@@ -1,7 +1,6 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { NewBoardDialogComponent } from './dialogs/new-board-dialog/new-board-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 // Interfaces
 

@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import * as todoData from 'src/assets/data.json';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog/new-board-dialog.component';
 
