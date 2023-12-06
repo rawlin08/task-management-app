@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
 import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
+import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
+import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dial
     DeleteBoardComponent,
     NewBoardDialogComponent,
     DeleteBoardDialogComponent,
-    DeleteTaskDialogComponent
+    DeleteTaskDialogComponent,
+    NewTaskDialogComponent,
+    ViewTaskDialogComponent
   ],
   imports: [
     BrowserModule,
