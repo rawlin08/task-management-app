@@ -31,7 +31,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     </mat-menu>
   </div>
   <div class="right">
-    <button class="addTaskBtn" [disabled]="this.app.boardEmpty"><img src="assets/images/icon-add-task-mobile.svg" alt=""><span class="addNewText">Add New Task</span></button>
+    <button class="addTaskBtn" (click)="app.openNewTaskDialog()" [disabled]="this.app.boardEmpty"><img src="assets/images/icon-add-task-mobile.svg" alt=""><span class="addNewText">Add New Task</span></button>
     <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
     <mat-menu class="optionStyles" #options="matMenu">
       <div class="optionsBtns">
