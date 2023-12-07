@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import * as todoData from 'src/assets/data.json';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
-import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
+import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -223,6 +223,16 @@ export class AppComponent implements OnInit {
       width: '100%',
       data: [this.currentTask, this.currentBoard, this.data]
     })
+  }
+  openNewTaskDialog() {
+    let newTaskDialogRef = this.dialog.open(NewTaskDialogComponent, {
+      width: '100%',
+      data: this.currentBoard
+    });
+
+    newTaskDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    }); 
   }
 
   @HostListener('window:resize', ['$event'])
