@@ -1,9 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { NgFor } from '@angular/common';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
 
 // Interfaces
 export interface viewTaskData {
