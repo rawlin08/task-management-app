@@ -232,6 +232,10 @@ export class AppComponent implements OnInit {
 
     newTaskDialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if (result == 'create') {
+        this.data = JSON.parse(localStorage.getItem('boards')!);
+        this.currentBoard = this.data.find((board:any) => board.id == this.currentBoard.id);
+      }
     }); 
   }
 

@@ -36,7 +36,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button (click)="createNewTask($event, form)">Create New Task</button>
+      <button mat-dialog-close="create" (click)="createNewTask($event, form)">Create New Task</button>
     </mat-dialog-actions>
   </div>
   `,
@@ -153,14 +153,14 @@ export class NewTaskDialogComponent implements OnInit {
         const maxID = Math.max(...subtaskIDs);
         subtasks.push({
           id: maxID + 1,
-          name: element.value,
+          title: element.value,
           isCompleted: false
         });
       }
       else {
         subtasks.push({
           id: 1,
-          name: element.value,
+          title: element.value,
           isCompleted: false
         });
       };
@@ -186,10 +186,13 @@ export class NewTaskDialogComponent implements OnInit {
       subtasks: subtasks
     }
     console.log(this.task);
-    
+    let board = this.todoData.find((board:any) => board.id == this.data.id);
+    let column = board.columns.find((column:any) => column.name == this.selectedStatus);
+    column.tasks.push(this.task);
+    this.updateLocalStorage();
   }
   updateLocalStorage() {
-    localStorage.setItem('boards', JSON.stringify(this.data));
+    localStorage.setItem('boards', JSON.stringify(this.todoData));
   }
   deleteSubtask(subtaskID:any) {
     if (this.newTask.subtasks.length != 1) {
