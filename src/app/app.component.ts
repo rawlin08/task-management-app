@@ -193,7 +193,7 @@ export class AppComponent implements OnInit {
 
     newBoardDialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if (result != undefined) {
+      if (result == 'create') {
         this.data = JSON.parse(localStorage.getItem('boards')!);
         console.log(this.data);
         this.currentBoard = this.data.find((board:any) => board.id == this.data.length);
