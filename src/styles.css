@@ -114,6 +114,10 @@ new-board-dialog {
 }
 
 /* DIALOG STYLES */
+mat-dialog-content {
+    padding: 0 0 30px 0 !important;
+    color: var(--white) !important;
+}
 .dialog {
     background-color: var(--dark-gray);
     padding: 24px;

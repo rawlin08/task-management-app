@@ -41,10 +41,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
-    mat-dialog-content {
-      padding: 0 0 30px 0 !important;
-      color: var(--white) !important;
-    }
     mat-select {
       outline: 1px solid var(--gray) !important;
       color: var(--white) !important;
@@ -139,9 +135,6 @@ export class NewTaskDialogComponent implements OnInit {
     e.preventDefault();
     let form:any[] = Object.values(formElements.elements);
     let subtaskElements = form.filter((element:any) => element.id == 'subdescription');
-
-    console.log(Object.values(formElements.elements));
-    console.log(subtaskElements);
     
     // GET SUBTASKS
     let subtasks:any[] = [];
