@@ -119,23 +119,36 @@ new-board-dialog {
     padding: 24px;
     color: var(--white);
 }
-.dialog > h3 {
+.dialog h3 {
     font-size: 18px;
     font-weight: 500;
     margin: 0 0 24px 0;
+}
+form {
+    display: grid !important;
+    gap: 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 .dialog .input {
     display: grid;
     gap: 8px;
 }
-.dialog input[type="text"] {
+.multiInput {
+    display: grid;
+    gap: 12px;
+}
+.dialog input[type="text"], .dialog textarea {
     border-radius: 4px;
     background-color: var(--dark-gray);
     color: var(--white);
     border: 1px solid var(--gray);
     padding: 8px 16px;
+    font-size: 13px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 23px;
+    resize: none;
 }
-.dialog input[type="text"]:focus {
+.dialog input[type="text"]:focus, .dialog textarea:focus {
     outline: none;
 }
 .dialog label {
