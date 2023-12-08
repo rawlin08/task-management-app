@@ -5,6 +5,7 @@ import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.c
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
+import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -201,6 +202,22 @@ export class AppComponent implements OnInit {
       }
     });
   };
+  openEditBoardDialog() {
+    let newBoardDialogRef = this.dialog.open(EditBoardDialogComponent, {
+      width: '100%',
+      data: this.currentBoard
+    });
+
+    newBoardDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result == 'save') {
+        this.data = JSON.parse(localStorage.getItem('boards')!);
+        console.log(this.data);
+        this.currentBoard = this.data.find((board:any) => board.id == this.currentBoard.id);
+        console.log(this.currentBoard);
+      }
+    });
+  }
   openDeleteBoardDialog() {
     let deleteBoardDialogRef = this.dialog.open(DeleteBoardDialogComponent, {
       width: '100%',
@@ -221,7 +238,7 @@ export class AppComponent implements OnInit {
     this.currentTask = task;
     this.dialog.open(ViewTaskDialogComponent, {
       width: '100%',
-      data: [this.currentTask, this.currentBoard, this.data]
+      data: [this.currentTask, this.currentBoard]
     })
   }
   openNewTaskDialog() {
