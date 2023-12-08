@@ -36,7 +36,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button mat-dialog-close="create" (click)="editTask($event, form)">Save Changes</button>
+      <button mat-dialog-close="save" (click)="editTask($event, form)">Save Changes</button>
     </mat-dialog-actions>
   </div>
   `,
@@ -128,13 +128,22 @@ export class EditTaskDialogComponent implements OnInit {
       subtasks: this.currentTask.subtasks
     }
     
-    let board = this.todoData.find((board:any) => board.id == this.data[1].id);
-    let column = board.columns.find((column:any) => column.name == this.data[0].status);
-    console.log(column);
-    
-    let index = column.tasks.indexOf(column.tasks.find((task:any) => task.id == this.currentTask.id));
-    column.tasks[index] = this.task;
-    
+    if (this.selectedStatus == this.currentTask.status) {
+      let board = this.todoData.find((board:any) => board.id == this.data[1].id);
+      let column = board.columns.find((column:any) => column.name == this.data[0].status);
+      let index = column.tasks.indexOf(column.tasks.find((task:any) => task.id == this.currentTask.id));
+      column.tasks[index] = this.task;
+    }
+    else {
+      let board = this.todoData.find((board:any) => board.id == this.data[1].id);
+      let column = board.columns.find((column:any) => column.name == this.data[0].status);
+      column.tasks = column.tasks.filter((task:any) => task.id != this.data[0].id);
+      console.log(column);
+      
+      let newColumn = board.columns.find((column:any) => column.name == this.selectedStatus);
+      newColumn.tasks.push(this.task);
+    }
+
     this.updateLocalStorage();
   }
   updateLocalStorage() {
