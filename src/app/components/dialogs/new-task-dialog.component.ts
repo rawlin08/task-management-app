@@ -131,7 +131,6 @@ export class NewTaskDialogComponent implements OnInit {
       }
     ]
   };
-  task:any = {};
 
   createNewTask(e:Event, form:any) {
     e.preventDefault();
@@ -145,7 +144,7 @@ export class NewTaskDialogComponent implements OnInit {
     });
     
     const maxID = Math.max(...taskIDs);
-    this.task = {
+    this.newTask = {
       id: maxID + 1,
       title: form.elements.title.value,
       description: form.elements.description.value,
@@ -154,7 +153,7 @@ export class NewTaskDialogComponent implements OnInit {
     }
     let board = this.todoData.find((board:any) => board.id == this.data.id);
     let column = board.columns.find((column:any) => column.name == this.selectedStatus);
-    column.tasks.push(this.task);
+    column.tasks.push(this.newTask);
     this.updateLocalStorage();
   }
   updateLocalStorage() {
