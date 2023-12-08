@@ -25,7 +25,7 @@ export interface editBoardData {
         <div #columnNames class="columns input">
           <label>Board Columns</label>
           <div *ngFor="let column of newBoard.columns">
-            <input id="description" name="description" type="text">
+            <input [(ngModel)]="column.name" id="description" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
           </div>
         </div>
@@ -72,72 +72,37 @@ export interface editBoardData {
     }
   `]
 })
-export class NewBoardDialogComponent implements OnInit, OnDestroy {
+export class NewBoardDialogComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.todoData = JSON.parse(localStorage.getItem('boards')!);
-  }
-  ngOnDestroy(): void {
-    
   }
 
   todoData:any;
   newBoard:any = {
     columns: [
       {
-      id: 1,
-      content: ''
+        id: 1,
+        name: '',
+        tasks: []
       }
     ]
   };
-  board:any = {
-    name: '',
-    columns: []
-  };
 
-  createBoard(e:Event, formElements:any) {
+  createBoard(e:Event, form:any) {
     e.preventDefault();
-    let form:any[] = Object.values(formElements.elements);
-    let columnNames = form.filter((element:any) => element.id == 'description');
-
-    console.log(Object.values(formElements.elements));
-    console.log(columnNames);
-
-    let columns:any[] = [];
-    columnNames.forEach((element:any) => {
-      if (this.board.columns.length != 0) {
-        const columnIDs = this.board.columns.map((object:any) => {
-          return object.id;
-        });
-        const maxID = Math.max(...columnIDs);
-        columns.push({
-          id: maxID + 1,
-          name: element.value,
-          tasks: []
-        });
-      }
-      else {
-        columns.push({
-          id: 1,
-          name: element.value,
-          tasks: []
-        });
-      };
-    });
-    
+  
     const boardIDs = this.todoData.map((object:any) => {
       return object.id;
     })
     const maxID = Math.max(...boardIDs);
-    this.board = {
+    this.newBoard = {
       id: maxID + 1,
-      name: form[0].value,
-      columns: columns
+      name: form.elements.name.value,
+      columns: this.newBoard.columns
     }
-    this.todoData.push(this.board);
-    console.log(this.todoData);
+    this.todoData.push(this.newBoard);
     this.updateLocalStorage();
-    console.log(this.board);
   }
   updateLocalStorage() {
     localStorage.setItem('boards', JSON.stringify(this.todoData));
@@ -156,7 +121,8 @@ export class NewBoardDialogComponent implements OnInit, OnDestroy {
 
     this.newBoard.columns.push({
       id: maxID + 1,
-      content: ''
+      name: '',
+      tasks: []
     })
   }
 }
