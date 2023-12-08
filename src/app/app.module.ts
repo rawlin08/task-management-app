@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { HeadingComponent } from './components/heading.component';
@@ -28,6 +29,7 @@ import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-di
 import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
+import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog.component';
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.c
     DeleteBoardDialogComponent,
     DeleteTaskDialogComponent,
     NewTaskDialogComponent,
-    ViewTaskDialogComponent
+    ViewTaskDialogComponent,
+    EditBoardDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.c
     MatMenuModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   providers: [AppComponent, NewBoardDialogComponent],
   bootstrap: [AppComponent]
