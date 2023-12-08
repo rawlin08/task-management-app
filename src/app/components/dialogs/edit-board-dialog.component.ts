@@ -91,8 +91,6 @@ export class EditBoardDialogComponent implements OnInit {
   deleteColumn(columnID:any) {
     if (this.currentBoard.columns.length != 1) {
       this.currentBoard.columns = this.currentBoard.columns.filter((column:any) => column.id != columnID);
-      console.log(this.currentBoard);
-      
     }
   }
   addColumn() {
