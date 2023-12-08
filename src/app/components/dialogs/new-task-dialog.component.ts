@@ -21,7 +21,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
           <label>Subtasks</label>
           <div class="multiInput">
             <div *ngFor="let subtask of newTask.subtasks">
-              <input [placeholder]="subtask.placeholder" id="subdescription" name="subdescription" type="text">
+              <input [(ngModel)]="subtask.title" [name]="subtask.id" [placeholder]="subtask.placeholder" id="subdescription" name="subdescription" type="text">
               <button (click)="deleteSubtask(subtask.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
             </div>
           </div>
@@ -119,45 +119,22 @@ export class NewTaskDialogComponent implements OnInit {
     subtasks: [
       {
         id: 1,
-        content: '',
+        title: '',
+        isCompleted: false,
         placeholder: 'e.g. Make coffee'
       },
       {
         id: 2,
-        content: '',
+        title: '',
+        isCompleted: false,
         placeholder: 'e.g. Drink coffee & smile'
       }
     ]
   };
   task:any = {};
 
-  createNewTask(e:Event, formElements:any) {
+  createNewTask(e:Event, form:any) {
     e.preventDefault();
-    let form:any[] = Object.values(formElements.elements);
-    let subtaskElements = form.filter((element:any) => element.id == 'subdescription');
-    
-    // GET SUBTASKS
-    let subtasks:any[] = [];
-    subtaskElements.forEach((element:any) => {
-      if (subtasks.length != 0) {
-        const subtaskIDs = subtasks.map((object:any) => {
-          return object.id;
-        });
-        const maxID = Math.max(...subtaskIDs);
-        subtasks.push({
-          id: maxID + 1,
-          title: element.value,
-          isCompleted: false
-        });
-      }
-      else {
-        subtasks.push({
-          id: 1,
-          title: element.value,
-          isCompleted: false
-        });
-      };
-    })
 
     // GET TASK IDS
     let taskIDs:any[] = [];
@@ -168,17 +145,13 @@ export class NewTaskDialogComponent implements OnInit {
     });
     
     const maxID = Math.max(...taskIDs);
-    this.task.id = maxID + 1;
-
-    // GET NEW TASK READY
     this.task = {
       id: maxID + 1,
-      title: form[0].value,
-      description: form[1].value,
+      title: form.elements.title.value,
+      description: form.elements.description.value,
       status: this.selectedStatus,
-      subtasks: subtasks
+      subtasks: this.newTask.subtasks
     }
-    console.log(this.task);
     let board = this.todoData.find((board:any) => board.id == this.data.id);
     let column = board.columns.find((column:any) => column.name == this.selectedStatus);
     column.tasks.push(this.task);
@@ -201,7 +174,9 @@ export class NewTaskDialogComponent implements OnInit {
 
     this.newTask.subtasks.push({
       id: maxID + 1,
-      content: ''
+      title: '',
+      isCompleted: false,
+      placeholder: 'e.g. Repeat the process'
     })
   }
 }
