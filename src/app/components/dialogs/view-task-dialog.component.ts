@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DeleteTaskDialogComponent } from './delete-task-dialog.component';
 import { Router } from '@angular/router';
+import { EditTaskDialogComponent } from './edit-task-dialog.component';
 
 @Component({
   selector: 'app-view-task-dialog',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
       <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
       <mat-menu class="optionStyles" #options="matMenu">
         <div class="optionsBtns">
-          <button class="editBoardBtn">Edit Task</button>
+          <button (click)="openEditTaskDialog()" class="editBoardBtn">Edit Task</button>
           <button (click)="openDeleteTaskDialog()" class="deleteBoardBtn">Delete Task</button>
         </div>
       </mat-menu>
@@ -39,6 +40,24 @@ export class ViewTaskDialogComponent implements OnInit {
 
   todoData:any;
 
+  openEditTaskDialog() {
+    let editTaskDialogRef = this.dialog.open(EditTaskDialogComponent, {
+      width: '100%',
+      data: this.data
+    });
+
+    editTaskDialogRef.afterClosed().subscribe(result => {
+      if (result == 'save') {
+        let board = this.todoData.find((board:any) => board.id == this.data[1].id);
+        let column = board.columns.find((column:any) => column.name == this.data[0].status);
+        column.tasks = column.tasks.filter((task:any) => task.id != this.data[0].id);
+        console.log(this.todoData);
+        
+        this.updateLocalStorage();
+        location.reload();
+      }
+    }); 
+  };
   openDeleteTaskDialog() {
     let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
       width: '100%',
