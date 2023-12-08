@@ -35,7 +35,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
     <mat-menu class="optionStyles" #options="matMenu">
       <div class="optionsBtns">
-        <button class="editBoardBtn">Edit Board</button>
+        <button (click)="app.openEditBoardDialog()" class="editBoardBtn">Edit Board</button>
         <button (click)="app.openDeleteBoardDialog()" class="deleteBoardBtn">Delete Board</button>
       </div>
     </mat-menu>
