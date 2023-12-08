@@ -95,7 +95,13 @@ export class NewBoardDialogComponent implements OnInit {
     const boardIDs = this.todoData.map((object:any) => {
       return object.id;
     })
-    const maxID = Math.max(...boardIDs);
+    let maxID:any;
+    if (boardIDs.length == 0) {
+      maxID = 0
+    }
+    else {
+      maxID = Math.max(...boardIDs);
+    }
     this.newBoard = {
       id: maxID + 1,
       name: form.elements.name.value,
