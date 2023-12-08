@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DeleteTaskDialogComponent } from './delete-task-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-task-dialog',
@@ -30,9 +31,14 @@ import { DeleteTaskDialogComponent } from './delete-task-dialog.component';
   `,
   styles: [``]
 })
-export class ViewTaskDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) {}
-  
+export class ViewTaskDialogComponent implements OnInit {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, public router: Router) {}
+  ngOnInit(): void {
+    this.todoData = JSON.parse(localStorage.getItem('boards')!);
+  }
+
+  todoData:any;
+
   openDeleteTaskDialog() {
     let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
       width: '100%',
@@ -40,15 +46,18 @@ export class ViewTaskDialogComponent {
     });
 
     deleteTaskDialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      console.log(this.data);
-      
       if (result == 'delete') {
-        let board = this.data.find((currBoard:any) => currBoard.id == this.data[1].id);
-        console.log(board);
+        let board = this.todoData.find((board:any) => board.id == this.data[1].id);
+        let column = board.columns.find((column:any) => column.name == this.data[0].status);
+        column.tasks = column.tasks.filter((task:any) => task.id != this.data[0].id);
+        console.log(this.todoData);
         
-        board = board.filter((task:any) => task.id != this.data[0].id);
+        this.updateLocalStorage();
+        location.reload();
       }
     }); 
   };
+  updateLocalStorage() {
+    localStorage.setItem('boards', JSON.stringify(this.todoData));
+  }
 }
