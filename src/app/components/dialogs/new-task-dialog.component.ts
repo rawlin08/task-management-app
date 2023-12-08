@@ -142,8 +142,13 @@ export class NewTaskDialogComponent implements OnInit {
         taskIDs.push(task.id);
       });
     });
-    
-    const maxID = Math.max(...taskIDs);
+    let maxID:any;
+    if (taskIDs.length == 0) {
+      maxID = 0
+    }
+    else {
+      maxID = Math.max(...taskIDs);
+    }
     this.newTask = {
       id: maxID + 1,
       title: form.elements.title.value,
