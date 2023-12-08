@@ -30,6 +30,7 @@ import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dial
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog.component';
+import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog
     DeleteTaskDialogComponent,
     NewTaskDialogComponent,
     ViewTaskDialogComponent,
-    EditBoardDialogComponent
+    EditBoardDialogComponent,
+    EditTaskDialogComponent
   ],
   imports: [
     BrowserModule,
