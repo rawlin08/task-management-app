@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-edit-task-dialog',
-  template: ``,
+  template: `
+  
+  `,
   styles: [``]
 })
 export class EditTaskDialogComponent {
-
+  constructor() {}
 }
