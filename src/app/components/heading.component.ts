@@ -123,19 +123,4 @@ export class HeadingComponent {
   constructor(public app: AppComponent, public dialog: MatDialog) {}
 
   chevronIcon:any = 'down';
-
-  // Dialogs
-  openNewTaskDialog() {
-    this.dialog.open(newTaskDialog);
-  }
-}
-
-@Component({
-  selector: 'new-task-dialog',
-  templateUrl: './templates/new-task-dialog.html',
-  standalone: true,
-  imports: [MatDialogModule],
-})
-export class newTaskDialog {
-  constructor() {}
 }
