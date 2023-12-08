@@ -236,10 +236,15 @@ export class AppComponent implements OnInit {
   openViewTaskDialog(task:any) {
     console.log(task);
     this.currentTask = task;
-    this.dialog.open(ViewTaskDialogComponent, {
+    let viewTaskDialogRef = this.dialog.open(ViewTaskDialogComponent, {
       width: '100%',
       data: [this.currentTask, this.currentBoard]
-    })
+    });
+
+    viewTaskDialogRef.afterClosed().subscribe(result => {
+      this.data = JSON.parse(localStorage.getItem('boards')!);
+      this.currentBoard = this.data.find((board:any) => board.id == this.currentBoard.id);
+    });
   }
   openNewTaskDialog() {
     let newTaskDialogRef = this.dialog.open(NewTaskDialogComponent, {
