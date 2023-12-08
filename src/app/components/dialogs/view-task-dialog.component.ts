@@ -9,7 +9,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   template: `
   <div class="dialog">
     <div>
-      <h3>{{ data[0].title }}</h3>
+      <h3>{{ currentTask.title }}</h3>
       <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
       <mat-menu class="optionStyles" #options="matMenu">
         <div class="optionsBtns">
@@ -18,11 +18,11 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
         </div>
       </mat-menu>
     </div>
-    <p>{{ data[0].description }}</p>
+    <p>{{ currentTask.description }}</p>
     <div>
-      <p>Subtasks (0 of {{ data[0].subtasks.length }})</p>
+      <p>Subtasks (0 of {{ currentTask.subtasks.length }})</p>
       <div class="subtask">
-        <p *ngFor="let subtask of data[0].subtasks"><mat-checkbox>{{ subtask.title }}</mat-checkbox></p>
+        <p *ngFor="let subtask of currentTask.subtasks"><mat-checkbox>{{ subtask.title }}</mat-checkbox></p>
       </div>
     </div>
     <div>
@@ -39,6 +39,8 @@ export class ViewTaskDialogComponent implements OnInit {
   }
 
   todoData:any;
+  currentTask:any = this.data[0];
+  currentBoard:any = this.data[1];
 
   openEditTaskDialog() {
     let editTaskDialogRef = this.dialog.open(EditTaskDialogComponent, {
@@ -48,13 +50,13 @@ export class ViewTaskDialogComponent implements OnInit {
 
     editTaskDialogRef.afterClosed().subscribe(result => {
       if (result == 'save') {
-        let board = this.todoData.find((board:any) => board.id == this.data[1].id);
-        let column = board.columns.find((column:any) => column.name == this.data[0].status);
-        column.tasks = column.tasks.filter((task:any) => task.id != this.data[0].id);
-        console.log(this.todoData);
+        this.todoData = JSON.parse(localStorage.getItem('boards')!);
+        let board = this.todoData.find((board:any) => board.id == this.currentBoard.id);
+        console.log(board);
+        let column = board.columns.find((column:any) => column.name == this.currentTask.status);
+        console.log(column);
         
-        this.updateLocalStorage();
-        location.reload();
+        this.currentTask = column.tasks.find((task:any) => task.id == this.currentTask.id);
       }
     }); 
   };
@@ -66,9 +68,9 @@ export class ViewTaskDialogComponent implements OnInit {
 
     deleteTaskDialogRef.afterClosed().subscribe(result => {
       if (result == 'delete') {
-        let board = this.todoData.find((board:any) => board.id == this.data[1].id);
-        let column = board.columns.find((column:any) => column.name == this.data[0].status);
-        column.tasks = column.tasks.filter((task:any) => task.id != this.data[0].id);
+        let board = this.todoData.find((board:any) => board.id == this.currentBoard.id);
+        let column = board.columns.find((column:any) => column.name == this.currentTask.status);
+        column.tasks = column.tasks.filter((task:any) => task.id != this.currentTask.id);
         console.log(this.todoData);
         
         this.updateLocalStorage();
