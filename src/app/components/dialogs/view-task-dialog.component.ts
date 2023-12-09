@@ -20,7 +20,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     </div>
     <p>{{ currentTask.description }}</p>
     <div>
-      <p>Subtasks (0 of {{ currentTask.subtasks.length }})</p>
+      <p>Subtasks ({{ getCompleted(currentTask) }} of {{ currentTask.subtasks.length }})</p>
       <div class="subtask">
         <p *ngFor="let subtask of currentTask.subtasks"><mat-checkbox>{{ subtask.title }}</mat-checkbox></p>
       </div>
@@ -41,6 +41,11 @@ export class ViewTaskDialogComponent implements OnInit {
   todoData:any;
   currentTask:any = this.data[0];
   currentBoard:any = this.data[1];
+
+  getCompleted(task:any) {
+    let completed = task.subtasks.filter((subtask:any) => subtask.isCompleted == true);
+    return completed.length
+  }
 
   openEditTaskDialog() {
     let editTaskDialogRef = this.dialog.open(EditTaskDialogComponent, {

@@ -23,7 +23,7 @@ export interface viewTaskData {
       <div class="tasks">
         <div class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
-          <p>0 of {{ task.subtasks.length }} subtasks</p>
+          <p>{{ getCompleted(task) }} of {{ task.subtasks.length }} subtasks</p>
         </div>
       </div>
     </div>
@@ -106,5 +106,10 @@ export interface viewTaskData {
 })
 export class BoardComponent {
   constructor(public app: AppComponent, public dialog: MatDialog) {}
+
+  getCompleted(task:any) {
+    let completed = task.subtasks.filter((subtask:any) => subtask.isCompleted == true);
+    return completed.length
+  }
 
 }
