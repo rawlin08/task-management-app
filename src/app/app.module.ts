@@ -64,7 +64,8 @@ import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog.c
     MatDialogModule,
     MatCheckboxModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [AppComponent, NewBoardDialogComponent],
   bootstrap: [AppComponent]
