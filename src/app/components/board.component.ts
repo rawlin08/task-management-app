@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 // Interfaces
 export interface viewTaskData {
@@ -14,14 +15,14 @@ export interface viewTaskData {
   selector: 'app-board',
   template: `
   <app-empty-board *ngIf="app.boardEmpty == true"></app-empty-board>
-  <div *ngIf="app.boardEmpty == false" class="board">
+  <div cdkDropListGroup *ngIf="app.boardEmpty == false" class="board">
     <div class="column" *ngFor="let column of app.currentBoard.columns">
       <div class="columnName">
         <div class="color"></div>
         <h3>{{ column.name }} ({{ column.tasks.length }})</h3>
       </div>
-      <div class="tasks">
-        <div class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
+      <div cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)" class="tasks">
+        <div cdkDrag class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
           <p>{{ getCompleted(task) }} of {{ task.subtasks.length }} subtasks</p>
         </div>
@@ -110,6 +111,19 @@ export class BoardComponent {
   getCompleted(task:any) {
     let completed = task.subtasks.filter((subtask:any) => subtask.isCompleted == true);
     return completed.length
+  }
+  drop(e:any) {
+    console.log(e);
+    if (e.previousContainer === e.container) {
+      moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
+    } else {
+      transferArrayItem(
+        e.previousContainer.data,
+        e.container.data,
+        e.previousIndex,
+        e.currentIndex,
+      );
+    }
   }
 
 }
