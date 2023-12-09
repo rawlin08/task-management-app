@@ -166,25 +166,32 @@ export class ViewTaskDialogComponent implements OnInit {
   openEditTaskDialog() {
     let editTaskDialogRef = this.dialog.open(EditTaskDialogComponent, {
       width: '100%',
-      data: this.data
+      data: [this.currentTask, this.currentBoard]
     });
 
     editTaskDialogRef.afterClosed().subscribe(result => {
       if (result == 'save') {
         this.todoData = JSON.parse(localStorage.getItem('boards')!);
         let board = this.todoData.find((board:any) => board.id == this.currentBoard.id);
-        console.log(board);
-        let column = board.columns.find((column:any) => column.name == this.currentTask.status);
-        console.log(column);
+        let task:any = []
+        board.columns.forEach((element:any) => {
+          element.tasks.forEach((element:any) => {
+            if (element.id == this.currentTask.id) {
+              task.push(element);
+            }
+          });
+        });
         
-        this.currentTask = column.tasks.find((task:any) => task.id == this.currentTask.id);
+        this.currentTask = task[0];
+        this.selectedStatus = this.currentTask.status;
+        console.log(this.currentTask);    
       }
     }); 
   };
   openDeleteTaskDialog() {
     let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
       width: '100%',
-      data: this.data
+      data: this.currentTask
     });
 
     deleteTaskDialogRef.afterClosed().subscribe(result => {
