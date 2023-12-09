@@ -21,7 +21,7 @@ export interface viewTaskData {
         <h3>{{ column.name }} ({{ column.tasks.length }})</h3>
       </div>
       <div cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="app.drop($event)" class="tasks">
-        <div [cdkDragData]="task" cdkDrag class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
+        <div [cdkDragData]="task" [cdkDragStartDelay]="200" cdkDrag class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
           <p>{{ getCompleted(task) }} of {{ task.subtasks.length }} subtasks</p>
         </div>
@@ -31,6 +31,9 @@ export interface viewTaskData {
   </div>
   `,
   styles: [`
+  .tasks {
+    min-height: 100%;
+  }
   .newColumnContainer {
     display: grid;
     place-content: center;
