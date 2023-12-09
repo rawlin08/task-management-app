@@ -6,6 +6,7 @@ import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-di
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.component';
 import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
@@ -265,7 +266,34 @@ export class AppComponent implements OnInit {
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
     console.log(this.innerWidth);
+  }
+
+  drop(e:any) {
+    console.log(e);
+    if (e.previousContainer === e.container) {
+      moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
+    }
+    else {
+      transferArrayItem(
+        e.previousContainer.data,
+        e.container.data,
+        e.previousIndex,
+        e.currentIndex,
+      );
+    };
+    let board = this.data.find((board:any) => board.id == this.currentBoard.id);
+    let task:any = []
+    board.columns.forEach((column:any) => {
+      column.tasks.forEach((element:any) => {
+        if (element.id == e.item.data.id) {
+          task.push(element, column.name);
+        }
+      });
+    });
+    console.log(task);
+    task[0].status = task[1];
     
+    this.updateLocalStorage();
   }
 
   updateLocalStorage() {
