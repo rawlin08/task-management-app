@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   template: `
   <div class="dialog">
     <h3>Delete this task?</h3>
-    <p>Are you sure you want to delete the '{{ data[0].title }}' task and its subtasks? This action cannot be reversed.</p>
+    <p>Are you sure you want to delete the '{{ data.title }}' task and its subtasks? This action cannot be reversed.</p>
     <mat-dialog-actions>
       <button mat-dialog-close="delete">Delete</button>
       <button mat-dialog-close>Cancel</button>
