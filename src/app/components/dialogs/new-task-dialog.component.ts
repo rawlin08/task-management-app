@@ -41,36 +41,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
-    mat-select {
-      outline: 1px solid var(--gray) !important;
-      color: var(--white) !important;
-      width: auto !important;
-      margin: 0 1px;
-      border-radius: 4px;
-    }
-    .mat-mdc-select-trigger {
-      padding: 8px 16px;
-    }
-    .mat-mdc-select-value {
-      color: var(--white);
-      font-weight: 400;
-      line-height: 20px;
-    }
-    .mdc-list-item__primary-text {
-      color: var(--white);
-    }
-    .mat-pseudo-checkbox-checked::after {
-      border-left: 2px solid var(--purple) !important;
-    }
-    .mat-pseudo-checkbox::after {
-      border-bottom: 2px solid var(--purple) !important;
-    }
-    .mat-mdc-select-arrow {
-      color: var(--purple);
-    }
-    .mat-mdc-select-panel {
-      background: var(--dark-gray);
-    }
     .subtasks > div > div {
       display: flex;
       justify-content: space-between;
