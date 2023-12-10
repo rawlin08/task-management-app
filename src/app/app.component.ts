@@ -13,7 +13,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   template: `
   <mat-drawer-container  class="example-container" [hasBackdrop]="false">
     <mat-drawer #drawer mode="side">
-      <img class="logo" [src]="'assets/images/logo-light.svg'">
+      <img class="logo" [src]="this.darkMode == false ? 'assets/images/logo-dark.svg' : 'assets/images/logo-light.svg'">
       <div class="boards">
         <h3>All Boards ({{ data.length }})</h3>
         <div class="boardsContainer">
@@ -27,15 +27,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
           </button>
         </div>
       </div>
-      <div class="themeToggleContainer">
-        <img src="assets/images/icon-light-theme.svg" alt="">
-        <label class="form-switch">
-          <input type="checkbox">
-          <i></i>
-        </label>
-        <img src="assets/images/icon-dark-theme.svg" alt="">
-      </div>
-      <button class="active" mat-raised-button (click)="drawer.toggle()">
+      <app-theme-toggle></app-theme-toggle>
+      <button class="active" mat-raised-button (click)="toggleSidebar(drawer)">
         <img src="assets/images/icon-hide-sidebar.svg" alt="">
         <p>Hide Sidebar</p>
       </button>
@@ -47,7 +40,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
       </main>
     </mat-drawer-content>
   </mat-drawer-container>
-  <button class="inactive" mat-raised-button (click)="drawer.toggle()"><img src="assets/images/icon-show-sidebar.svg" alt=""></button>
+  <button [classList]="sidebarOpened == false ? 'inactive' : 'inactive open'" mat-raised-button (click)="toggleSidebar(drawer)"><img src="assets/images/icon-show-sidebar.svg" alt=""></button>
   <div class="mobile">
     <main>
       <app-heading></app-heading>
@@ -70,21 +63,26 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   @media (min-width: 768px) {
     .inactive {
       position: absolute;
-      bottom: 53px;
+      bottom: 50px;
       z-index: 1;
       display: block;
-    }
-    .inactive {
       background-color: var(--purple);
       border-radius: 0 100px 100px 0;
       padding: 15px;
+      opacity: 1;
+      transition: opacity 0.2s linear, z-index 0s linear;
+    }
+    .open {
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.1s linear, z-index 0.5s linear;
     }
     mat-drawer-container {
       display: block;
     }
     mat-drawer {
-      background-color: var(--dark-gray);
-      border-right: 1px solid var(--black4);
+      background-color: var(--header-background-color);
+      border-right: 1px solid var(--border-color);
       overflow-y: unset !important;
     }
     .mobile {
@@ -148,11 +146,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
   @media (hover: hover) {
     .board:hover, .active:hover {
-      background-color: var(--white);
+      background-color: var(--subBttn-background-color);
       color: var(--purple);
     }
     .createNewBoardBtn:hover {
-      background-color: var(--white);
+      background-color: var(--subBttn-background-color);
     }
   }
   `]
@@ -194,9 +192,7 @@ export class AppComponent implements OnInit {
   currentTask:any;
   boardEmpty:boolean = false;
   innerWidth:any;
-  sidebarOpened = {
-    boolean: false,
-  }
+  sidebarOpened:boolean = false;
 
   toggleTheme() {
     if (this.darkMode == true) {
@@ -328,5 +324,11 @@ export class AppComponent implements OnInit {
   }
   toggleSidebar(drawer:any) {
     drawer.toggle();
+    if (this.sidebarOpened == false) {
+      this.sidebarOpened = true;
+    }
+    else {
+      this.sidebarOpened = false;
+    }
   }
 }
