@@ -35,14 +35,6 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     </div>
   `,
   styles: [`
-  .editBoardBtn, .deleteBoardBtn {
-    font-size: 13px;
-    width: 160px;
-    text-align: left;
-  }
-  .deleteBoardBtn {
-    color: var(--red);
-  }
   .optionsBtns {
     padding: 10px;
     display: grid;
@@ -60,6 +52,8 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   .description {
     color: var(--gray);
     margin: 24px 0;
+    font-size: 13px;
+    line-height: 23px;
   }
   .subtasksLabel {
     font-size: 12px;
