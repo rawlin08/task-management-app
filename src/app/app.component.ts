@@ -161,16 +161,20 @@ export class AppComponent implements OnInit {
   title = 'task-management-app';
   constructor(public dialog: MatDialog, public newBoardDialog: NewBoardDialogComponent) {}
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    
     // LOCAL STORAGE
+    this.darkMode = JSON.parse(localStorage.getItem('theme')!);
+    if (!this.darkMode) {
+      this.darkMode = false;
+      localStorage.setItem('theme', JSON.stringify(this.darkMode));
+    }
+
     this.data = JSON.parse(localStorage.getItem('boards')!);
     if (!this.data) {
-      console.log('LOCAL STORAGE NOT FOUND!');
       let boards = todoData;
       localStorage.setItem('boards', JSON.stringify(boards.boards));
       this.data = boards.boards;
-    }
-    else {
-      console.log('LOCAL STORAGE FOUND!');
     }
 
     this.currentBoard = this.data.find((board:any) => board.id == 1);
@@ -178,6 +182,7 @@ export class AppComponent implements OnInit {
     console.log(this.currentBoard);  
   }
 
+  darkMode:any;
   data:any;
   currentBoard:any;
   currentTask:any;
@@ -185,6 +190,16 @@ export class AppComponent implements OnInit {
   innerWidth:any;
   sidebarOpened = {
     boolean: false,
+  }
+
+  toggleTheme() {
+    if (this.darkMode == true) {
+      this.darkMode = false;
+    }
+    else {
+      this.darkMode = true;
+    }
+    localStorage.setItem('theme', JSON.stringify(this.darkMode));
   }
 
   // Dialogs
@@ -305,7 +320,5 @@ export class AppComponent implements OnInit {
   }
   toggleSidebar(drawer:any) {
     drawer.toggle();
-  }
-  toggleTheme(drawer:any) {
   }
 }
