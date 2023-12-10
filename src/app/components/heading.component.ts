@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-heading',
   template: `
   <div class="left">
     <img src="assets/images/logo-mobile.svg" alt="">
-    <button class="boardName" mat-button (menuOpened)="this.chevronIcon = 'up'" (menuClosed)="this.chevronIcon = 'down'" [matMenuTriggerFor]="menu">{{ app.currentBoard.name }} <img class="chevronIcon" [src]="'assets/images/icon-chevron-' + this.chevronIcon + '.svg'" alt=""></button>
+    <button [disabled]="app.innerWidth >= 768" class="boardName" mat-button (menuOpened)="this.chevronIcon = 'up'" (menuClosed)="this.chevronIcon = 'down'" [matMenuTriggerFor]="menu">{{ app.currentBoard.name }} <img class="chevronIcon" [src]="'assets/images/icon-chevron-' + this.chevronIcon + '.svg'" alt=""></button>
     <mat-menu class="menuStyles" xPosition="after" #menu="matMenu">
       <div class="boards">
         <h3 class="boardNumber">All Boards ({{ app.data.length }})</h3>
@@ -22,10 +22,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       </div>
       <div class="themeToggleContainer">
         <img src="assets/images/icon-light-theme.svg" alt="">
-        <label class="form-switch">
-          <input type="checkbox">
-          <i></i>
-        </label>
+        <mat-slide-toggle class="themeToggle" [checked]="app.darkMode" (change)="app.toggleTheme()"></mat-slide-toggle>
         <img src="assets/images/icon-dark-theme.svg" alt="">
       </div>
     </mat-menu>
@@ -89,6 +86,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     .boardName {
       font-size: 20px;
       font-weight: 600;
+    }
+    .boardName:disabled {
+      cursor: auto;
     }
     .chevronIcon {
       display: none;
