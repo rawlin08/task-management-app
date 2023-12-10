@@ -169,6 +169,12 @@ export class AppComponent implements OnInit {
       this.darkMode = false;
       localStorage.setItem('theme', JSON.stringify(this.darkMode));
     }
+    if (this.darkMode == false) {
+      document.body.classList.add('light');
+    }
+    else {
+      document.body.classList.add('dark');
+    }
 
     this.data = JSON.parse(localStorage.getItem('boards')!);
     if (!this.data) {
@@ -195,9 +201,11 @@ export class AppComponent implements OnInit {
   toggleTheme() {
     if (this.darkMode == true) {
       this.darkMode = false;
+      document.body.classList.replace('dark', 'light');
     }
     else {
       this.darkMode = true;
+      document.body.classList.replace('light', 'dark');
     }
     localStorage.setItem('theme', JSON.stringify(this.darkMode));
   }
