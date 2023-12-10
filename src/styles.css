@@ -28,6 +28,7 @@
     --warnBttn-color: var(--white);
     --unselected-background-color: transparent;
     --unselected-color: var(--gray);
+    --border-color: #E4EBFA;
 }
 .dark {
     --text-color: var(--white);
@@ -45,6 +46,7 @@
     --selected-color: var(--white);
     --unselected-background-color: transparent;
     --unselected-color: var(--gray);
+    --border-color: #3E3F4E;
 }
 body {
     margin: 0;
@@ -98,9 +100,9 @@ app-board {
     display: grid;
     height: calc(100vh - 73px);
 }
-.menuStyles, .optionStyles {
-    background-color: var(--dark-gray);
-    color: var(--gray);
+.menuStyles {
+    background-color: var(--header-background-color);
+    color: var(--text-color);
 }
 .boardNumber {
     color: var(--gray);
@@ -133,15 +135,16 @@ app-board {
     background-color: var(--purple);
     color: var(--white);
 }
-.themeToggleContainer {
+app-theme-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--very-dark-gray);
+    background-color: var(--main-background-color);
     padding: 20px 0;
     margin: 16px 16px 10px 16px;
     gap: 20px;
     align-self: self-end;
+    border-radius: 8px;
 }
 
 /* DIALOG STYLES */
@@ -244,6 +247,6 @@ mat-select {
 
 @media (min-width: 768px) {
     app-heading {
-        border-bottom: 1px solid var(--black4);
+        border-bottom: 1px solid var(--border-color);
     }
 }
