@@ -81,7 +81,7 @@ export interface viewTaskData {
     border-radius: 50%;
   }
   .taskCard {
-    background-color: var(--dark-gray);
+    background-color: var(--card-background-color);
     border-radius: 8px;
     box-shadow: 0px 4px 6px 0px rgba(54, 78, 126, 0.10);
     padding: 23px 16px;

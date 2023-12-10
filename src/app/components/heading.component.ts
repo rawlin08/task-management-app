@@ -39,13 +39,8 @@ import { MatDialog } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
-  .editBoardBtn, .deleteBoardBtn {
-    font-size: 13px;
-    width: 160px;
-    text-align: left;
-  }
-  .deleteBoardBtn {
-    color: var(--red);
+  .boardName {
+    font-weight: 600;
   }
   .optionsBtns {
     padding: 10px;
@@ -85,7 +80,6 @@ import { MatDialog } from '@angular/material/dialog';
   @media (min-width: 768px) {
     .boardName {
       font-size: 20px;
-      font-weight: 600;
     }
     .boardName:disabled {
       cursor: auto;

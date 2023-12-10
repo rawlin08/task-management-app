@@ -66,7 +66,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   }
   .subtaskContainer {
     padding: 4px;
-    background-color: var(--very-dark-gray);
+    background-color: var(--main-background-color);
     border-radius: 4px;
   }
   .status {
@@ -79,7 +79,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
 
   /* Subtask styles */
   .mat-mdc-checkbox label {
-    color: var(--white);
+    color: var(--text-color);
   }
   .completed label {
     text-decoration: line-through;
