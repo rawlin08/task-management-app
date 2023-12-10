@@ -16,9 +16,10 @@
 }
 .light {
     --text-color: var(--black);
+    --subText-color: var(--gray);
     --header-background-color: var(--white);
     --main-background-color: var(--light-gray2);
-    --subText-color: var(--gray);
+    --card-background-color: var(--white);
     --primaryBttn-background-color: var(--purple);
     --primaryBttn-color: var(--white);
     --subBttn-background-color: var(--light-purple);
@@ -30,9 +31,10 @@
 }
 .dark {
     --text-color: var(--white);
+    --subText-color: var(--gray);
     --header-background-color: var(--dark-gray);
     --main-background-color: var(--very-dark-gray);
-    --subText-color: var(--gray);
+    --card-background-color: var(--dark-gray);
     --primaryBttn-background-color: var(--purple);
     --primaryBttn-color: var(--white);
     --subBttn-background-color: var(--white);
@@ -83,20 +85,18 @@ app-heading {
     align-items: center;
     justify-content: space-between;
     padding: 20px 16px;
-    background-color: var(--dark-gray);
-    color: var(--white);
+    background-color: var(--header-background-color);
+    color: var(--text-color);
 }
 app-board {
     display: grid;
     height: calc(100vh - 94px);
-    background-color: var(--very-dark-gray);
-    color: var(--white);
+    background-color: var(--main-background-color);
+    color: var(--text-color);
 }
 .mobile app-board {
     display: grid;
     height: calc(100vh - 73px);
-    background-color: var(--very-dark-gray);
-    color: var(--white);
 }
 .menuStyles, .optionStyles {
     background-color: var(--dark-gray);
@@ -148,12 +148,12 @@ app-board {
 
 mat-dialog-content {
     padding: 0 0 30px 0 !important;
-    color: var(--white) !important;
+    color: var(--text-color) !important;
 }
 .dialog {
-    background-color: var(--dark-gray);
+    background-color: var(--card-background-color);
     padding: 24px;
-    color: var(--white);
+    color: var(--text-color);
 }
 
 /* TEXT INPUT STYLES */
@@ -193,7 +193,7 @@ form {
 .dialog label {
     font-size: 12px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--text-color);
 }
 
 /* EDIT AND DELETE BUTTONS */
@@ -208,22 +208,22 @@ form {
 
 /* MAT SELECT STYLES */
 mat-select {
-    outline: 1px solid var(--gray) !important;
-    color: var(--white) !important;
+    outline: 1px solid var(--input-border-color) !important;
+    color: var(--text-color) !important;
     width: auto !important;
     margin: 0 1px;
     border-radius: 4px;
-    }
+}
 .mat-mdc-select-trigger {
     padding: 8px 16px;
 }
 .mat-mdc-select-value {
-    color: var(--white);
+    color: var(--text-color);
     font-weight: 400;
     line-height: 20px;
 }
 .mdc-list-item__primary-text {
-    color: var(--white);
+    color: var(--text-color);
 }
 .mat-pseudo-checkbox-checked::after {
     border-left: 2px solid var(--purple) !important;
@@ -235,60 +235,12 @@ mat-select {
     color: var(--purple);
 }
 .mat-mdc-select-panel {
-    background: var(--dark-gray);
+    background: var(--card-background-color);
 }
 
-.form-switch {
-    display: inline-block;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .form-switch i {
-    position: relative;
-    display: inline-block;
-    width: 46px;
-    height: 26px;
-    background-color: var(--purple);
-    border-radius: 23px;
-    vertical-align: text-bottom;
-    transition: all 0.3s linear;
-  }
-  .form-switch i::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 42px;
-    height: 22px;
-    background-color: var(--purple);
-    border-radius: 11px;
-    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
-    transition: all 0.25s linear;
-  }
-  .form-switch i::after {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 3px;
-    width: 16px;
-    height: 16px;
-    background-color: var(--white);
-    border-radius: 11px;
-    transform: translate3d(2px, 2px, 0);
-    transition: all 0.2s ease-in-out;
-  }
-  .form-switch:active i::after {
-    width: 28px;
-    transform: translate3d(2px, 2px, 0);
-  }
-  .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
-  .form-switch input { display: none; }
-  .form-switch input:checked + i { background-color: var(--purple); }
-  .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
-  .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
-
-  .mat-drawer-inner-container {
+.mat-drawer-inner-container {
     overflow: unset !important;
-  }
+}
 
 @media (min-width: 768px) {
     app-heading {
