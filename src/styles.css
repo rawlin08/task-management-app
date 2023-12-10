@@ -12,12 +12,43 @@
     --white: #FFFFFF;
     --red: #EA5555;
     --light-red: #FF9898;
+    --input-border-color: rgba(130, 143, 163, 0.25);
+}
+.light {
+    --text-color: var(--black);
+    --header-background-color: var(--white);
+    --main-background-color: var(--light-gray2);
+    --subText-color: var(--gray);
+    --primaryBttn-background-color: var(--purple);
+    --primaryBttn-color: var(--white);
+    --subBttn-background-color: var(--light-purple);
+    --subBttn-color: var(--purple);
+    --warnBttn-background-color: var(--red);
+    --warnBttn-color: var(--white);
+    --unselected-background-color: transparent;
+    --unselected-color: var(--gray);
+}
+.dark {
+    --text-color: var(--white);
+    --header-background-color: var(--dark-gray);
+    --main-background-color: var(--very-dark-gray);
+    --subText-color: var(--gray);
+    --primaryBttn-background-color: var(--purple);
+    --primaryBttn-color: var(--white);
+    --subBttn-background-color: var(--white);
+    --subBttn-color: var(--purple);
+    --warnBttn-background-color: var(--red);
+    --warnBttn-color: var(--white);
+    --selected-background-color: var(--purple);
+    --selected-color: var(--white);
+    --unselected-background-color: transparent;
+    --unselected-color: var(--gray);
 }
 body {
     margin: 0;
     min-height: 100vh;
-    color: var(--white);
-    background-color: var(--very-dark-gray);
+    color: var(--text-color);
+    background-color: var(--main-background-color);
     position: relative;
 }
 html {
@@ -31,6 +62,9 @@ button {
     font-size: 18px;
     letter-spacing: 1px;
     font-family: inherit;
+}
+button:disabled {
+    cursor: auto;
 }
 h1, h2, h3, h4, p {
     margin: 0;
@@ -57,9 +91,6 @@ app-board {
     height: calc(100vh - 94px);
     background-color: var(--very-dark-gray);
     color: var(--white);
-}
-new-board-dialog {
-    display: block;
 }
 .mobile app-board {
     display: grid;
@@ -114,6 +145,7 @@ new-board-dialog {
 }
 
 /* DIALOG STYLES */
+
 mat-dialog-content {
     padding: 0 0 30px 0 !important;
     color: var(--white) !important;
@@ -123,6 +155,23 @@ mat-dialog-content {
     padding: 24px;
     color: var(--white);
 }
+
+/* TEXT INPUT STYLES */
+.dialog input[type="text"], .dialog textarea {
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--input-border-color);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 23px;
+    resize: none;
+}
+.dialog input[type="text"]:focus, .dialog textarea:focus {
+    outline: none;
+}
+
 .dialog h3 {
     font-size: 18px;
     font-weight: 500;
@@ -141,23 +190,20 @@ form {
     display: grid;
     gap: 12px;
 }
-.dialog input[type="text"], .dialog textarea {
-    border-radius: 4px;
-    background-color: var(--dark-gray);
-    color: var(--white);
-    border: 1px solid var(--gray);
-    padding: 8px 16px;
-    font-size: 13px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 23px;
-    resize: none;
-}
-.dialog input[type="text"]:focus, .dialog textarea:focus {
-    outline: none;
-}
 .dialog label {
     font-size: 12px;
     font-weight: 500;
+    color: var(--white);
+}
+
+/* EDIT AND DELETE BUTTONS */
+.editBoardBtn, .deleteBoardBtn {
+    font-size: 13px;
+    width: 160px;
+    text-align: left;
+}
+.deleteBoardBtn {
+    color: var(--red);
 }
 
 /* MAT SELECT STYLES */
