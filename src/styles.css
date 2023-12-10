@@ -22,7 +22,7 @@
     --card-background-color: var(--white);
     --primaryBttn-background-color: var(--purple);
     --primaryBttn-color: var(--white);
-    --subBttn-background-color: var(--light-purple);
+    --subBttn-background-color: rgba(99, 95, 199, 0.10);
     --subBttn-color: var(--purple);
     --warnBttn-background-color: var(--red);
     --warnBttn-color: var(--white);
@@ -160,7 +160,7 @@ mat-dialog-content {
 .dialog input[type="text"], .dialog textarea {
     border-radius: 4px;
     background-color: transparent;
-    color: var(--white);
+    color: var(--text-color);
     border: 1px solid var(--input-border-color);
     padding: 8px 16px;
     font-size: 13px;
