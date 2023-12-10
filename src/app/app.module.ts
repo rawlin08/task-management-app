@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NewBoardDialogComponent } from './components/dialogs/new-board-dialog.component';
 import { DeleteBoardDialogComponent } from './components/dialogs/delete-board-dialog.component';
 import { DeleteTaskDialogComponent } from './components/dialogs/delete-task-dialog.component';
@@ -53,7 +54,8 @@ import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog.c
     MatCheckboxModule,
     MatSelectModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    MatSlideToggleModule
   ],
   providers: [AppComponent, NewBoardDialogComponent],
   bootstrap: [AppComponent]
