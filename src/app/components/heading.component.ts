@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-heading',
+  encapsulation: ViewEncapsulation.None,
   template: `
   <div class="left">
     <img src="assets/images/logo-mobile.svg" alt="">
@@ -11,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
     <mat-menu class="menuStyles" xPosition="after" #menu="matMenu">
       <div class="boards">
         <h3 class="boardNumber">All Boards ({{ app.data.length }})</h3>
-        <button (click)="app.changeCurrentBoard(board)" class="boardBtn" *ngFor="let board of app.data">
+        <button [classList]="app.currentBoard.id == board.id ? 'boardBtn selected' : 'boardBtn'" (click)="app.changeCurrentBoard(board)" *ngFor="let board of app.data">
           <img src="assets/images/icon-board.svg" alt="">
           <p class="boardName">{{ board.name }}</p>
         </button>
@@ -20,17 +21,13 @@ import { MatDialog } from '@angular/material/dialog';
           <p>+ Create New Board</p>
         </button>
       </div>
-      <div class="themeToggleContainer">
-        <img src="assets/images/icon-light-theme.svg" alt="">
-        <mat-slide-toggle class="themeToggle" [checked]="app.darkMode" (change)="app.toggleTheme()"></mat-slide-toggle>
-        <img src="assets/images/icon-dark-theme.svg" alt="">
-      </div>
+      <app-theme-toggle></app-theme-toggle>
     </mat-menu>
   </div>
   <div class="right">
     <button class="addTaskBtn" (click)="app.openNewTaskDialog()" [disabled]="this.app.boardEmpty"><img src="assets/images/icon-add-task-mobile.svg" alt=""><span class="addNewText">Add New Task</span></button>
     <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
-    <mat-menu class="optionStyles" #options="matMenu">
+    <mat-menu class="menuStyles" #options="matMenu">
       <div class="optionsBtns">
         <button (click)="app.openEditBoardDialog()" class="editBoardBtn">Edit Board</button>
         <button (click)="app.openDeleteBoardDialog()" class="deleteBoardBtn">Delete Board</button>
@@ -75,6 +72,7 @@ import { MatDialog } from '@angular/material/dialog';
   }
   .addNewText {
     display: none;
+    color: var(--white);
   }
 
   @media (min-width: 768px) {
