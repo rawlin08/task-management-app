@@ -15,14 +15,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   `,
   styles: [`
   h3 {
-    color: var(--red);
+    color: var(--warnBttn-background-color);
     font-size: 18px;
   }
   p {
     font-size: 13px;
     line-height: 23px;
     margin: 0 0 24px 0;
-    color: var(--gray);
+    color: var(--subText-color);
   }
   mat-dialog-actions {
     display: grid;
@@ -32,12 +32,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     border-top: none;
   }
   mat-dialog-actions > button:first-child {
-    color: var(--white);
-    background-color: var(--red);
+    color: var(--warnBttn-color);
+    background-color: var(--warnBttn-background-color);
   }
   mat-dialog-actions > button:last-child {
-    color: var(--purple);
-    background-color: var(--white);
+    color: var(--subBttn-color);
+    background-color: var(--subBttn-background-color);
   }
   mat-dialog-actions > button {
     border-radius: 20px;

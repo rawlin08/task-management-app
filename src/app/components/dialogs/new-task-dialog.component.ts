@@ -54,7 +54,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     }
     .addSubtaskBtn {
       padding: 10px;
-      background-color: var(--white);
+      background-color: var(--subBttn-background-color);
       color: var(--purple);
       border-radius: 20px;
       font-weight: 500;
