@@ -119,6 +119,14 @@ export class NewTaskDialogComponent implements OnInit {
   createNewTask(e:Event, form:any) {
     e.preventDefault();
 
+    // SEE IF SUBTASKS ARE BLANK
+    let subtasks:any[] = [];
+    this.newTask.subtasks.forEach((element:any) => {
+      if (element.title != '') {
+        subtasks.push(element);
+      }
+    })
+
     // GET TASK IDS
     let taskIDs:any[] = [];
     this.data.columns.forEach((column:any) => {
@@ -138,7 +146,7 @@ export class NewTaskDialogComponent implements OnInit {
       title: form.elements.title.value,
       description: form.elements.description.value,
       status: this.selectedStatus,
-      subtasks: this.newTask.subtasks
+      subtasks: subtasks
     }
     let board = this.todoData.find((board:any) => board.id == this.data.id);
     let column = board.columns.find((column:any) => column.name == this.selectedStatus);

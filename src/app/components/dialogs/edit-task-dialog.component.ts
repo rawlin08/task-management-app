@@ -111,6 +111,9 @@ export class EditTaskDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
   ngOnInit(): void {
     this.todoData = JSON.parse(localStorage.getItem('boards')!);
+    if (this.currentTask.subtasks.length == 0) {
+      this.addSubtask();
+    }
   }
 
   todoData:any;
@@ -120,12 +123,21 @@ export class EditTaskDialogComponent implements OnInit {
 
   editTask(e: Event, form:any) {
     e.preventDefault();
+
+    // SEE IF SUBTASKS ARE BLANK
+    let subtasks:any[] = [];
+    this.currentTask.subtasks.forEach((element:any) => {
+      if (element.title != '') {
+        subtasks.push(element);
+      }
+    })
+
     this.task = {
       id: this.currentTask.id,
       title: form.elements.title.value,
       description: form.elements.description.value,
       status: this.selectedStatus,
-      subtasks: this.currentTask.subtasks
+      subtasks: subtasks
     }
     
     if (this.selectedStatus == this.currentTask.status) {
