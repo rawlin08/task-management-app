@@ -208,9 +208,7 @@ export class AppComponent implements OnInit {
 
   // Dialogs
   openNewBoardDialog() {
-    let newBoardDialogRef = this.dialog.open(NewBoardDialogComponent, {
-      width: '100%',
-    });
+    let newBoardDialogRef = this.dialog.open(NewBoardDialogComponent)
 
     newBoardDialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -224,7 +222,6 @@ export class AppComponent implements OnInit {
   };
   openEditBoardDialog() {
     let newBoardDialogRef = this.dialog.open(EditBoardDialogComponent, {
-      width: '100%',
       data: this.currentBoard
     });
 
@@ -240,7 +237,6 @@ export class AppComponent implements OnInit {
   }
   openDeleteBoardDialog() {
     let deleteBoardDialogRef = this.dialog.open(DeleteBoardDialogComponent, {
-      width: '100%',
       data: this.currentBoard
     });
 
@@ -257,7 +253,6 @@ export class AppComponent implements OnInit {
     console.log(task);
     this.currentTask = task;
     let viewTaskDialogRef = this.dialog.open(ViewTaskDialogComponent, {
-      width: '100%',
       data: [this.currentTask, this.currentBoard]
     });
 

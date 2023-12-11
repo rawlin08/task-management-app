@@ -158,6 +158,9 @@ mat-dialog-content {
     padding: 24px;
     color: var(--text-color);
 }
+.cdk-global-overlay-wrapper > .cdk-overlay-pane {
+    width: 100% !important;
+}
 
 /* TEXT INPUT STYLES */
 .dialog input[type="text"], .dialog textarea {
@@ -249,4 +252,10 @@ mat-select {
     app-heading {
         border-bottom: 1px solid var(--border-color);
     }
+    .cdk-global-overlay-wrapper > .cdk-overlay-pane {
+        width: 480px !important;
+    }
+}
+@media (min-width: 1281px) {
+
 }

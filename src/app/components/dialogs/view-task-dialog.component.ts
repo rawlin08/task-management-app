@@ -159,7 +159,6 @@ export class ViewTaskDialogComponent implements OnInit {
 
   openEditTaskDialog() {
     let editTaskDialogRef = this.dialog.open(EditTaskDialogComponent, {
-      width: '100%',
       data: [this.currentTask, this.currentBoard]
     });
 
@@ -184,7 +183,6 @@ export class ViewTaskDialogComponent implements OnInit {
   };
   openDeleteTaskDialog() {
     let deleteTaskDialogRef = this.dialog.open(DeleteTaskDialogComponent, {
-      width: '100%',
       data: this.currentTask
     });
 
