@@ -99,7 +99,6 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     min-height: 16px;
   }
   .subtaskCheckbox:checked {
-    border: 1px solid var(--purple);
     accent-color: var(--purple);
   }
   `]
