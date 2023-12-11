@@ -23,7 +23,7 @@ export interface viewTaskData {
       <div cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="app.drop($event)" class="tasks">
         <div [cdkDragData]="task" [cdkDragStartDelay]="200" cdkDrag class="taskCard" (click)="app.openViewTaskDialog(task)" *ngFor="let task of column.tasks">
           <h4>{{ task.title }}</h4>
-          <p>{{ getCompleted(task) }} of {{ task.subtasks.length }} subtasks</p>
+          <p>{{ task.subtasks.length == 0 ? 'No Subtasks Available' : getCompleted(task) + ' of ' + task.subtasks.length + ' subtasks' }}</p>
         </div>
       </div>
     </div>

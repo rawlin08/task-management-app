@@ -21,7 +21,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
       </div>
     </mat-menu>
     <p class="viewdescription">{{ currentTask.description }}</p>
-    <p class="subtasksLabel">Subtasks ({{ getCompleted(currentTask) }} of {{ currentTask.subtasks.length }})</p>
+    <p class="subtasksLabel">{{ currentTask.subtasks.length == 0 ? 'No Subtasks Available' : 'Subtasks (' + getCompleted(currentTask) + ' of ' + currentTask.subtasks.length + ')' }}</p>
     <div class="subtasks">
       <div class="subtaskContainer" (click)="toggleTaskComplete(subtask)" *ngFor="let subtask of currentTask.subtasks">
         <input type="checkbox" class="subtaskCheckbox" [id]="subtask.id" [name]="subtask.id" [checked]="subtask.isCompleted">
