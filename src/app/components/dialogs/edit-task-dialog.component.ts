@@ -167,11 +167,17 @@ export class EditTaskDialogComponent implements OnInit {
     }
   }
   addSubtask() {
-    const columnIDs = this.currentTask.subtasks.map((object:any) => {
-      return object.id;
-    })
-    const maxID = Math.max(...columnIDs);
-
+    let maxID:any;
+    if (this.currentTask.subtasks.length == 0) {
+      maxID = 0;
+    }
+    else {
+      const columnIDs = this.currentTask.subtasks.map((object:any) => {
+        return object.id;
+      })
+      maxID = Math.max(...columnIDs);
+    }
+    
     this.currentTask.subtasks.push({
       id: maxID + 1,
       title: '',
