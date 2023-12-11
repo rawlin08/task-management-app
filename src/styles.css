@@ -147,6 +147,56 @@ app-theme-toggle {
     border-radius: 8px;
 }
 
+/* THEME TOGGLER STYLES */
+mat-slide-toggle {
+    width: 41px;
+}
+.mdc-form-field {
+    width: 100%;
+}
+.mdc-switch {
+    width: 100% !important;
+}
+.mdc-switch__icon {
+  opacity: 0 !important;
+}
+.mdc-switch__track {
+    border-radius: 20px !important;
+    height: 20px !important;
+}
+.mdc-switch__handle {
+    width: 15px !important;
+    height: 15px !important;
+    left: 2px !important;
+}
+.mat-mdc-slide-toggle.mat-accent {
+  --mdc-switch-selected-focus-state-layer-color: transparent;
+  --mdc-switch-selected-handle-color: #FFF;
+  --mdc-switch-selected-hover-state-layer-color: #FFF;
+  --mdc-switch-selected-pressed-state-layer-color: #FFF;
+  --mdc-switch-selected-focus-handle-color: #FFF;
+  --mdc-switch-selected-hover-handle-color: #FFF;
+  --mdc-switch-selected-pressed-handle-color: #FFF;
+  --mdc-switch-selected-focus-track-color: #635FC7;
+  --mdc-switch-selected-hover-track-color: #635FC7;
+  --mdc-switch-selected-pressed-track-color: #635FC7;
+  --mdc-switch-selected-track-color: #635FC7;
+}
+.mat-mdc-slide-toggle {
+  --mdc-switch-unselected-focus-state-layer-color: transparent;
+  --mdc-switch-unselected-pressed-state-layer-color: #FFF;
+  --mdc-switch-unselected-hover-state-layer-color: #FFF;
+  --mdc-switch-unselected-focus-track-color: #635FC7;
+  --mdc-switch-unselected-hover-track-color: #635FC7;
+  --mdc-switch-unselected-pressed-track-color: #635FC7;
+  --mdc-switch-unselected-track-color: #635FC7;
+  --mdc-switch-unselected-focus-handle-color: #FFF;
+  --mdc-switch-unselected-hover-handle-color: #FFF;
+  --mdc-switch-unselected-pressed-handle-color: #FFF;
+  --mdc-switch-handle-surface-color: #FFF;
+  --mdc-switch-unselected-handle-color: #FFF;
+}
+
 /* DIALOG STYLES */
 
 mat-dialog-content {

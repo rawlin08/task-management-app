@@ -68,9 +68,9 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
       display: block;
       background-color: var(--purple);
       border-radius: 0 100px 100px 0;
-      padding: 15px;
+      padding: 15px 20px 15px 15px;
       opacity: 1;
-      transition: opacity 0.2s linear, z-index 0s linear;
+      transition: opacity 0.2s linear, background-color 0.1s ease-in-out;
     }
     .open {
       z-index: 0;
@@ -151,6 +151,10 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
     }
     .createNewBoardBtn:hover {
       background-color: var(--subBttn-background-color);
+    }
+    .inactive:hover {
+      background-color: var(--light-purple);
+      transition: opacity 0.2s linear, background-color 0.1s ease-in-out;
     }
   }
   `]
