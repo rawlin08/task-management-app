@@ -92,6 +92,7 @@ export interface viewTaskData {
     font-size: 15px;
     font-weight: 700;
     margin: 0 0 8px 0;
+    transition: all 0.1s ease-in-out;
   }
   .taskCard > p {
     font-size: 12px;
@@ -103,6 +104,13 @@ export interface viewTaskData {
       background-color: hsla(220, 69%, 97%, 0.1);
       transition: all .1s ease-in-out;
       color: var(--purple);
+    }
+    .taskCard:hover {
+      cursor: pointer;
+    }
+    .taskCard:hover > h4 {
+      color: var(--purple);
+      transition: all 0.1s ease-in-out;
     }
   }
   `]

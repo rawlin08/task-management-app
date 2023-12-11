@@ -173,9 +173,10 @@ mat-dialog-content {
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 23px;
     resize: none;
+    margin: 0 1px;
 }
 .dialog input[type="text"]:focus, .dialog textarea:focus {
-    outline: none;
+    outline: 1px solid var(--purple);
 }
 
 .dialog h3 {
@@ -222,6 +223,7 @@ mat-select {
     width: auto !important;
     margin: 0 1px;
     border-radius: 4px;
+    transition: all 0.1s ease-in-out;
 }
 .mat-mdc-select-trigger {
     padding: 8px 16px;
@@ -261,4 +263,11 @@ mat-select {
 }
 @media (min-width: 1281px) {
 
+}
+
+@media (hover: hover) {
+    mat-select:hover {
+        outline: 1px solid var(--purple) !important;
+        transition: all 0.1s ease-in-out;
+    }
 }

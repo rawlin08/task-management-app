@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   <div class="dialog">
     <h3>Delete this board?</h3>
     <p>Are you sure you want to delete the '{{ data.name }}' board? This action will remove all columns and tasks and cannot be reversed.</p>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="delete">
       <button mat-dialog-close="delete">Delete</button>
       <button mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
@@ -24,26 +24,40 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     margin: 0 0 24px 0;
     color: var(--subText-color);
   }
-  mat-dialog-actions {
+  .delete {
     display: grid;
     gap: 16px;
     padding: 0;
     justify-content: inherit;
     border-top: none;
   }
-  mat-dialog-actions > button:first-child {
+  .delete > button:first-child {
     color: var(--warnBttn-color);
     background-color: var(--warnBttn-background-color);
+    transition: all 0.1s ease-in-out;
   }
-  mat-dialog-actions > button:last-child {
+  .delete > button:last-child {
     color: var(--subBttn-color);
     background-color: var(--subBttn-background-color);
   }
-  mat-dialog-actions > button {
+  .delete > button {
     border-radius: 20px;
-    padding: 8px;
+    padding: 10px;
     font-size: 13px;
     font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .delete {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (hover: hover) {
+    .delete > button:first-child:hover {
+      background-color: var(--light-red);
+      transition: all 0.1s ease-in-out;
+    }
   }
   `]
 })

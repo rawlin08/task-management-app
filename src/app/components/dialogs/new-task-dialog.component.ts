@@ -35,7 +35,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="new">
       <button mat-dialog-close="create" (click)="createNewTask($event, form)">Create New Task</button>
     </mat-dialog-actions>
   </div>
@@ -58,14 +58,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       color: var(--purple);
       border-radius: 20px;
       font-weight: 500;
-      margin: 8px 0 0 0;
+      margin: 8px 3px 0 3px;
       font-size: 13px;
     }
-    mat-dialog-actions {
+    .new {
       padding: 0 !important;
       display: flex !important;
     }
-    mat-dialog-actions > button {
+    .new > button {
       background-color: var(--purple);
       color: var(--white);
       border-radius: 20px;
@@ -74,6 +74,20 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       width: 100%;
       font-size: 13px;
       margin: 10px 0 0 0;
+      transition: all 0.1s ease-in-out;
+    }
+    #subdescription ~ button {
+      margin: 0 3px 0 0;
+    }
+
+    @media (hover: hover) {
+      #subdescription ~ button:hover {
+        color: var(--red);
+      }
+      .new > button:hover {
+        background-color: var(--light-purple);
+        transition: all 0.1s ease-in-out;
+      }
     }
   `]
 })

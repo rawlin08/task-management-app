@@ -23,9 +23,9 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     <p class="viewdescription">{{ currentTask.description }}</p>
     <p class="subtasksLabel">Subtasks ({{ getCompleted(currentTask) }} of {{ currentTask.subtasks.length }})</p>
     <div class="subtasks">
-      <div class="subtaskContainer" *ngFor="let subtask of currentTask.subtasks">
-        <input type="checkbox" class="subtaskCheckbox" [id]="subtask.id" [name]="subtask.id" [checked]="subtask.isCompleted" (change)="toggleTaskComplete(subtask)">
-        <label [ngClass]="subtask.isCompleted == true ? 'completed' : 'notCompleted'" [for]="subtask.id">{{ subtask.title }}</label>
+      <div class="subtaskContainer" (click)="toggleTaskComplete(subtask)" *ngFor="let subtask of currentTask.subtasks">
+        <input type="checkbox" class="subtaskCheckbox" [id]="subtask.id" [name]="subtask.id" [checked]="subtask.isCompleted">
+        <label (click)="toggleTaskComplete(subtask)" [ngClass]="subtask.isCompleted == true ? 'completed' : 'notCompleted'" [for]="subtask.id">{{ subtask.title }}</label>
       </div>
     </div>
     <div class="viewstatus input">
@@ -100,6 +100,17 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   }
   .subtaskCheckbox:checked {
     accent-color: var(--purple);
+  }
+
+  @media (hover: hover) {
+    .subtaskContainer:hover {
+      cursor: pointer;
+      background-color: rgba(98, 95, 192, 0.2);
+      transition: all 0.1s ease-in-out;
+    }
+    .subtaskCheckbox:hover, .subtaskContainer label:hover {
+      cursor: pointer;
+    }
   }
   `]
 })
