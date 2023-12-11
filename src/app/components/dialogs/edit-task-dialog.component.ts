@@ -41,6 +41,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
+  .noDelete {
+    display: none;
+  }
   mat-select {
     outline: 1px solid var(--gray) !important;
     color: var(--white) !important;
@@ -164,6 +167,9 @@ export class EditTaskDialogComponent implements OnInit {
   deleteSubtask(subtaskID:any) {
     if (this.currentTask.subtasks.length != 1) {
       this.currentTask.subtasks = this.currentTask.subtasks.filter((subtask:any) => subtask.id != subtaskID);
+    }
+    else {
+      this.currentTask.subtasks[0].title = '';
     }
   }
   addSubtask() {

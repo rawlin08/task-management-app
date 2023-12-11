@@ -250,7 +250,7 @@ form {
     display: grid;
     gap: 12px;
 }
-.multiInput > div:first-child > button {
+.columns > div:nth-child(2) > button {
     display: none;
 }
 .dialog label {

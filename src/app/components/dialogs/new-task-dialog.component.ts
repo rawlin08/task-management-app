@@ -19,7 +19,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         </div>
         <div #subtasks class="subtasks input">
           <label>Subtasks</label>
-          <div class="multiInput">
+          <div class="multiInput newSubtasks">
             <div *ngFor="let subtask of newTask.subtasks">
               <input [(ngModel)]="subtask.title" [name]="subtask.id" [placeholder]="subtask.placeholder" id="subdescription" name="subdescription" type="text">
               <button (click)="deleteSubtask(subtask.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
@@ -41,6 +41,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
+    .newSubtasks > div:first-child > button {
+      display: none;
+    }
     .subtasks > div > div {
       display: flex;
       justify-content: space-between;
