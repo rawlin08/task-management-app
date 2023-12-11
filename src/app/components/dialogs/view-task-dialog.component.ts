@@ -24,7 +24,8 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     <p class="subtasksLabel">Subtasks ({{ getCompleted(currentTask) }} of {{ currentTask.subtasks.length }})</p>
     <div class="subtasks">
       <div class="subtaskContainer" *ngFor="let subtask of currentTask.subtasks">
-        <mat-checkbox [ngClass]="subtask.isCompleted == true ? 'completed' : 'notCompleted'" [checked]="subtask.isCompleted" (change)="toggleTaskComplete(subtask)">{{ subtask.title }}</mat-checkbox>
+        <input type="checkbox" class="subtaskCheckbox" [id]="subtask.id" [name]="subtask.id" [checked]="subtask.isCompleted" (change)="toggleTaskComplete(subtask)">
+        <label [ngClass]="subtask.isCompleted == true ? 'completed' : 'notCompleted'" [for]="subtask.id">{{ subtask.title }}</label>
       </div>
     </div>
     <div class="status input">
@@ -65,7 +66,10 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     gap: 8px;
   }
   .subtaskContainer {
-    padding: 4px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
     background-color: var(--main-background-color);
     border-radius: 4px;
   }
@@ -81,35 +85,25 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   .mat-mdc-checkbox label {
     color: var(--text-color);
   }
-  .completed label {
+  .completed {
     text-decoration: line-through;
     opacity: 0.5;
+    transition: all 0.2s linear;
   }
-  .notCompleted label {
+  .notCompleted {
     text-decoration: none;
     opacity: 1;
+    transition: all 0.2s linear;
   }
 
   /* Checkbox styles */
-  .mat-mdc-checkbox.mat-accent {
-    --mdc-checkbox-selected-icon-color: var(--purple);
-    --mdc-checkbox-selected-hover-icon-color: var(--purple);
-    --mdc-checkbox-selected-pressed-icon-color: var(--purple);
-    --mdc-checkbox-selected-focus-icon-color: none;
-    --mdc-checkbox-unselected-icon-color: var(--white);
-    --mdc-checkbox-unselected-pressed-icon-color: var(--white);
-    --mdc-checkbox-unselected-hover-icon-color: var(--white);
-    --mdc-checkbox-unselected-focus-icon-color: none;
+  .subtaskCheckbox {
+    min-width: 16px;
+    min-height: 16px;
   }
-  .mdc-checkbox__background {
-    border: none !important;
-    padding: 2px !important;
-  }
-  .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"]) ~ .mdc-checkbox__background {
-    background-color: var(--white) !important;
-  }
-  .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected ~ .mdc-checkbox__ripple {
-    background: none;
+  .subtaskCheckbox:checked {
+    border: 1px solid var(--purple);
+    accent-color: var(--purple);
   }
   `]
 })
