@@ -250,6 +250,9 @@ form {
     display: grid;
     gap: 12px;
 }
+.multiInput > div:first-child > button {
+    display: none;
+}
 .dialog label {
     font-size: 12px;
     font-weight: 500;
