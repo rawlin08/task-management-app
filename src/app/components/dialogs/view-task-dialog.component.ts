@@ -14,7 +14,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
       <button [matMenuTriggerFor]="options"><img src="assets/images/icon-vertical-ellipsis.svg" alt=""></button>
     </div>
     <!-- MENU FOR EDIT AND DELETE TASK -->
-    <mat-menu class="optionStyles" #options="matMenu">
+    <mat-menu class="menuStyles" #options="matMenu">
       <div class="optionsBtns">
         <button (click)="openEditTaskDialog()" class="editBoardBtn">Edit Task</button>
         <button (click)="openDeleteTaskDialog()" class="deleteBoardBtn">Delete Task</button>
@@ -82,9 +82,6 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   }
 
   /* Subtask styles */
-  .mat-mdc-checkbox label {
-    color: var(--text-color);
-  }
   .completed {
     text-decoration: line-through;
     opacity: 0.5;
