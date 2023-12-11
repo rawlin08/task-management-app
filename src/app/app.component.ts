@@ -148,9 +148,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
     .board:hover, .active:hover {
       background-color: var(--subBttn-background-color);
       color: var(--purple);
+      transition: all 0.1s ease-in-out;
     }
     .createNewBoardBtn:hover {
       background-color: var(--subBttn-background-color);
+      transition: all 0.1s ease-in-out;
     }
     .inactive:hover {
       background-color: var(--light-purple);
