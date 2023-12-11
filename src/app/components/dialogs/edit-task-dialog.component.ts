@@ -35,7 +35,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="editTask">
       <button mat-dialog-close="save" (click)="editTask($event, form)">Save Changes</button>
     </mat-dialog-actions>
   </div>
@@ -94,11 +94,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     margin: 8px 0 0 0;
     font-size: 13px;
   }
-  mat-dialog-actions {
+  .editTask {
     padding: 0 !important;
     display: flex !important;
   }
-  mat-dialog-actions > button {
+  .editTask > button {
     background-color: var(--purple);
     color: var(--white);
     border-radius: 20px;
