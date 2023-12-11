@@ -183,6 +183,9 @@ mat-dialog-content {
     font-weight: 500;
     margin: 0 0 24px 0;
 }
+.heading > button:focus {
+    outline: none;
+}
 form {
     display: grid !important;
     gap: 24px;
