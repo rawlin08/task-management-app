@@ -20,7 +20,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
         <button (click)="openDeleteTaskDialog()" class="deleteBoardBtn">Delete Task</button>
       </div>
     </mat-menu>
-    <p class="description">{{ currentTask.description }}</p>
+    <p class="viewdescription">{{ currentTask.description }}</p>
     <p class="subtasksLabel">Subtasks ({{ getCompleted(currentTask) }} of {{ currentTask.subtasks.length }})</p>
     <div class="subtasks">
       <div class="subtaskContainer" *ngFor="let subtask of currentTask.subtasks">
@@ -28,7 +28,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
         <label [ngClass]="subtask.isCompleted == true ? 'completed' : 'notCompleted'" [for]="subtask.id">{{ subtask.title }}</label>
       </div>
     </div>
-    <div class="status input">
+    <div class="viewstatus input">
       <label>Current Status</label>
       <mat-select [(value)]="selectedStatus" (selectionChange)="changeTaskStatus()">
         <mat-option *ngFor="let column of data[1].columns" [value]="column.name">{{ column.name }}</mat-option>
@@ -50,7 +50,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
   .heading h3 {
     margin: 0;
   }
-  .description {
+  .viewdescription {
     color: var(--gray);
     margin: 24px 0;
     font-size: 13px;
@@ -73,10 +73,10 @@ import { EditTaskDialogComponent } from './edit-task-dialog.component';
     background-color: var(--main-background-color);
     border-radius: 4px;
   }
-  .status {
+  .viewstatus {
     margin: 24px 0 0 0;
   }
-  .status label {
+  .viewstatus label {
     font-size: 12px;
     font-weight: 500;
   }

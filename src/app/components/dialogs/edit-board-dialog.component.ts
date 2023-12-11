@@ -15,7 +15,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         <div #columnNames class="columns input">
           <label>Board Columns</label>
           <div *ngFor="let column of currentBoard.columns">
-            <input [(ngModel)]="column.name" id="description" [name]="column.id" type="text">
+            <input [(ngModel)]="column.name" id="editcolumn" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
           </div>
         </div>
@@ -57,7 +57,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     background-color: var(--purple);
     color: var(--white);
   }
-  #description {
+  #editcolumn {
     width: 100%;
   }
   `]
