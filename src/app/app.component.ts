@@ -255,7 +255,12 @@ export class AppComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if (result == 'delete') {
         this.data = this.data.filter((board:any) => board.id != this.currentBoard.id);
-        this.currentBoard = this.data[0];
+        if (this.data.length == 0) {
+          this.currentBoard = [];
+        }
+        else {
+          this.currentBoard = this.data[0];
+        }
         this.updateLocalStorage();
       }
     }); 
