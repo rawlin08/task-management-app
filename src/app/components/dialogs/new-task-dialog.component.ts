@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       <form #form action="">
         <div class="name input">
           <label for="title">Title</label>
-          <input required [ngClass]="titleFormControl.hasError('required') && titleFormControl.touched == true ? 'error' : ''" required matInput [errorStateMatcher]="matcher" [formControl]="titleFormControl" #title placeholder="e.g. Take coffee break" id="title" name="title" type="text">
+          <input required [ngClass]="titleFormControl.hasError('required') && titleFormControl.touched == true ? 'error' : ''" matInput [errorStateMatcher]="matcher" [formControl]="titleFormControl" #title placeholder="e.g. Take coffee break" id="title" name="title" type="text">
           <mat-hint>*required</mat-hint>
           <mat-error *ngIf="titleFormControl.hasError('required') && titleFormControl.touched == true">Can't be empty</mat-error>
         </div>
