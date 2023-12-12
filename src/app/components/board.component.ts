@@ -120,7 +120,7 @@ export class BoardComponent {
     let newColumnDialogRef = this.dialog.open(NewColumnDialogComponent, {
       data: this.app.currentBoard
     })
-
+    
     newColumnDialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result == 'create') {
