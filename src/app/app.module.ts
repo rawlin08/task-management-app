@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { HeadingComponent } from './components/heading.component';
@@ -57,7 +59,10 @@ import { NewColumnDialogComponent } from './components/dialogs/new-column-dialog
     MatSelectModule,
     FormsModule,
     DragDropModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AppComponent, NewBoardDialogComponent],
   bootstrap: [AppComponent]
