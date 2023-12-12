@@ -147,6 +147,13 @@ app-theme-toggle {
     border-radius: 8px;
 }
 
+.icon {
+    width: 15px;
+    height: 15px;
+    color: var(--white);
+    transition: color 0.1s ease-in-out;
+}
+
 /* THEME TOGGLER STYLES */
 mat-slide-toggle {
     width: 41px;
@@ -334,5 +341,9 @@ mat-select {
     mat-select:hover {
         outline: 1px solid var(--purple) !important;
         transition: all 0.1s ease-in-out;
+    }
+    .icon:hover {
+        color: var(--red);
+        transition: color 0.1s ease-in-out;
     }
 }
