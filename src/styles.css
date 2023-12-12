@@ -261,6 +261,12 @@ mat-error {
     top: 35px;
     right: 20px;
 }
+mat-hint {
+    font-size: 10px;
+}
+.name > mat-hint {
+    margin: -5px 0 0 0;
+}
 .error {
     outline: 1px solid var(--red);
 }
