@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component';
@@ -120,7 +120,7 @@ export class BoardComponent {
     let newColumnDialogRef = this.dialog.open(NewColumnDialogComponent, {
       data: this.app.currentBoard
     })
-    
+
     newColumnDialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result == 'create') {
