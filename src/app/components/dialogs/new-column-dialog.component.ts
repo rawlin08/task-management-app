@@ -66,10 +66,17 @@ export class NewColumnDialogComponent implements OnInit {
   
   todoData:any;
 
+  getRandomColor(min:any, max:any) {
+    let r =  min + Math.floor(Math.random() * (max - min + 1));
+    let g =  min + Math.floor(Math.random() * (max - min + 1));
+    let b =  min + Math.floor(Math.random() * (max - min + 1));
+    let rgb = `rgb(${r},${g},${b})`;
+    return rgb;
+  }
   createColumn(e: Event, form:any) {
     e.preventDefault();
-    console.log(this.columnNameFormControl);
-    
+    let color = this.getRandomColor(0, 255);
+
     if (!this.columnNameFormControl.hasError('required')) {
       const boardIDs = this.data.columns.map((object:any) => {
         return object.id;
@@ -86,6 +93,7 @@ export class NewColumnDialogComponent implements OnInit {
         id: maxID + 1,
         name: form.elements.newColumn.value,
         tasks: [],
+        color: color,
         placeholder: 'e.g. Todo'
       }
   
