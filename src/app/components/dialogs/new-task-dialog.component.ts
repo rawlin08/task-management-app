@@ -1,5 +1,14 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-new-task-dialog',
@@ -11,7 +20,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       <form #form action="">
         <div class="name input">
           <label for="title">Title</label>
-          <input #title placeholder="e.g. Take coffee break" id="title" name="title" type="text">
+          <input required [ngClass]="titleFormControl.hasError('required') && titleFormControl.touched == true ? 'error' : ''" required matInput [errorStateMatcher]="matcher" [formControl]="titleFormControl" #title placeholder="e.g. Take coffee break" id="title" name="title" type="text">
+          <mat-hint>*required</mat-hint>
+          <mat-error *ngIf="titleFormControl.hasError('required') && titleFormControl.touched == true">Can't be empty</mat-error>
         </div>
         <div class="description input">
           <label for="description">Description</label>
@@ -36,7 +47,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       </form>
     </mat-dialog-content>
     <mat-dialog-actions class="new">
-      <button mat-dialog-close="create" (click)="createNewTask($event, form)">Create New Task</button>
+      <button [disabled]="titleFormControl.hasError('required')" mat-dialog-close="create" (click)="createNewTask($event, form)">Create New Task</button>
     </mat-dialog-actions>
   </div>
   `,
@@ -77,11 +88,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       width: 100%;
       font-size: 13px;
       margin: 10px 0 0 0;
+      opacity: 1;
       transition: all 0.1s ease-in-out;
     }
     #subdescription ~ button {
       margin: 0 3px 0 0;
     }
+    .new > button:disabled {
+    opacity: 0.3;
+    transition: opacity 0.2s ease-in-out;
+  }
 
     @media (hover: hover) {
       #subdescription ~ button:hover {
@@ -99,6 +115,8 @@ export class NewTaskDialogComponent implements OnInit {
   ngOnInit(): void {
     this.todoData = JSON.parse(localStorage.getItem('boards')!);
   }
+  titleFormControl = new FormControl('', [Validators.required]);
+  matcher = new MyErrorStateMatcher();
 
   todoData:any;
   selectedStatus:any = this.data.columns[0].name;
