@@ -56,7 +56,7 @@ export interface editBoardData {
       font-size: 13px;
       font-weight: 500;
       border-radius: 20px;
-      padding: 8px;
+      padding: 10px;
       width: 100%;
     }
     .newBoard > button:first-child {
@@ -125,7 +125,6 @@ export class NewBoardDialogComponent implements OnInit {
     const columnIDs = this.newBoard.columns.map((object:any) => {
       return object.id;
     })
-    console.log(columnIDs);
     const maxID = Math.max(...columnIDs);
 
     this.newBoard.columns.push({
