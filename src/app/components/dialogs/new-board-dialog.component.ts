@@ -1,15 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-// Interfaces
-export interface newBoardData {
-  title:any,
-  boardColumns:any
-}
-export interface editBoardData {
-  title:any,
-  boardColumns:any
-}
-
 @Component({
   selector: 'app-new-board-dialog',
   providers: [],
@@ -38,38 +28,41 @@ export interface editBoardData {
   </div>
   `,
   styles: [`
-    .columns > div {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    mat-dialog-content {
-      padding: 0 0 12px 0 !important;
-    }
-    .newBoard {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      padding: 0 !important;
-    }
-    .newBoard > button {
-      font-size: 13px;
-      font-weight: 500;
-      border-radius: 20px;
-      padding: 10px;
-      width: 100%;
-    }
-    .newBoard > button:first-child {
-      background-color: var(--white);
-      color: var(--purple);
-    }
-    .newBoard > button:last-child {
-      background-color: var(--purple);
-      color: var(--white);
-    }
-    #columnName {
-      width: 100%;
-    }
+  .columns > div:nth-child(2) > button {
+    display: none;
+  }
+  .columns > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  mat-dialog-content {
+    padding: 0 0 12px 0 !important;
+  }
+  .newBoard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 !important;
+  }
+  .newBoard > button {
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+  }
+  .newBoard > button:first-child {
+    background-color: var(--white);
+    color: var(--purple);
+  }
+  .newBoard > button:last-child {
+    background-color: var(--purple);
+    color: var(--white);
+  }
+  #columnName {
+    width: 100%;
+  }
   `]
 })
 export class NewBoardDialogComponent implements OnInit {
