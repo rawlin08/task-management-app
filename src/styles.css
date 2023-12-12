@@ -177,8 +177,8 @@ mat-slide-toggle {
   --mdc-switch-selected-focus-handle-color: #FFF;
   --mdc-switch-selected-hover-handle-color: #FFF;
   --mdc-switch-selected-pressed-handle-color: #FFF;
-  --mdc-switch-selected-focus-track-color: #635FC7;
-  --mdc-switch-selected-hover-track-color: #635FC7;
+  --mdc-switch-selected-focus-track-color: #A8A4FF;
+  --mdc-switch-selected-hover-track-color: #A8A4FF;
   --mdc-switch-selected-pressed-track-color: #635FC7;
   --mdc-switch-selected-track-color: #635FC7;
 }
@@ -186,8 +186,8 @@ mat-slide-toggle {
   --mdc-switch-unselected-focus-state-layer-color: transparent;
   --mdc-switch-unselected-pressed-state-layer-color: #FFF;
   --mdc-switch-unselected-hover-state-layer-color: #FFF;
-  --mdc-switch-unselected-focus-track-color: #635FC7;
-  --mdc-switch-unselected-hover-track-color: #635FC7;
+  --mdc-switch-unselected-focus-track-color: #A8A4FF;
+  --mdc-switch-unselected-hover-track-color: #A8A4FF;
   --mdc-switch-unselected-pressed-track-color: #635FC7;
   --mdc-switch-unselected-track-color: #635FC7;
   --mdc-switch-unselected-focus-handle-color: #FFF;
