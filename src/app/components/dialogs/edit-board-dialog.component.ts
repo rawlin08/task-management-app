@@ -15,13 +15,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         <div #columnNames class="columns input">
           <label>Board Columns</label>
           <div *ngFor="let column of currentBoard.columns">
-            <input [(ngModel)]="column.name" id="editcolumn" [name]="column.id" type="text">
+            <input [(ngModel)]="column.name" id="editcolumn" [placeholder]="column.placeholder" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
           </div>
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="editBoard">
       <button type="button" (click)="addColumn()">+ Add New Column</button>
       <button mat-dialog-close="save" (click)="editBoard($event, form)">Save Changes</button>
     </mat-dialog-actions>
@@ -36,24 +36,24 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   mat-dialog-content {
     padding: 0 0 12px 0 !important;
   }
-  mat-dialog-actions {
+  .editBoard {
     display: flex;
     flex-direction: column;
     gap: 24px;
     padding: 0 !important;
   }
-  mat-dialog-actions > button {
+  .editBoard > button {
     font-size: 13px;
     font-weight: 500;
     border-radius: 20px;
     padding: 8px;
     width: 100%;
   }
-  mat-dialog-actions > button:first-child {
+  .editBoard > button:first-child {
     background-color: var(--white);
     color: var(--purple);
   }
-  mat-dialog-actions > button:last-child {
+  .editBoard > button:last-child {
     background-color: var(--purple);
     color: var(--white);
   }
@@ -92,6 +92,9 @@ export class EditBoardDialogComponent implements OnInit {
     if (this.currentBoard.columns.length != 1) {
       this.currentBoard.columns = this.currentBoard.columns.filter((column:any) => column.id != columnID);
     }
+    else {
+      this.currentBoard.columns[0].name = '';
+    }
   }
   addColumn() {
     const columnIDs = this.currentBoard.columns.map((object:any) => {
@@ -103,7 +106,8 @@ export class EditBoardDialogComponent implements OnInit {
     this.currentBoard.columns.push({
       id: maxID + 1,
       name: '',
-      tasks: []
+      tasks: [],
+      placeholder: 'e.g. Todo'
     })
     console.log(this.currentBoard);
     

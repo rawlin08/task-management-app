@@ -25,13 +25,13 @@ export interface editBoardData {
         <div #columnNames class="columns input">
           <label>Board Columns</label>
           <div *ngFor="let column of newBoard.columns">
-            <input [(ngModel)]="column.name" id="description" [name]="column.id" type="text">
+            <input [(ngModel)]="column.name" id="columnName" placeholder="e.g. Todo" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
           </div>
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="newBoard">
       <button type="button" (click)="addColumn()">+ Add New Column</button>
       <button mat-dialog-close="create" (click)="createBoard($event, form)">Create New Board</button>
     </mat-dialog-actions>
@@ -46,28 +46,28 @@ export interface editBoardData {
     mat-dialog-content {
       padding: 0 0 12px 0 !important;
     }
-    mat-dialog-actions {
+    .newBoard {
       display: flex;
       flex-direction: column;
       gap: 24px;
       padding: 0 !important;
     }
-    mat-dialog-actions > button {
+    .newBoard > button {
       font-size: 13px;
       font-weight: 500;
       border-radius: 20px;
       padding: 8px;
       width: 100%;
     }
-    mat-dialog-actions > button:first-child {
+    .newBoard > button:first-child {
       background-color: var(--white);
       color: var(--purple);
     }
-    mat-dialog-actions > button:last-child {
+    .newBoard > button:last-child {
       background-color: var(--purple);
       color: var(--white);
     }
-    #description {
+    #columnName {
       width: 100%;
     }
   `]
@@ -116,6 +116,9 @@ export class NewBoardDialogComponent implements OnInit {
   deleteColumn(columnID:any) {
     if (this.newBoard.columns.length != 1) {
       this.newBoard.columns = this.newBoard.columns.filter((column:any) => column.id != columnID);
+    }
+    else {
+      this.newBoard.columns[0].name = '';
     }
   }
   addColumn() {
