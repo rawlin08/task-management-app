@@ -221,7 +221,7 @@ export class AppComponent implements OnInit {
       if (result == 'create') {
         this.data = JSON.parse(localStorage.getItem('boards')!);
         console.log(this.data);
-        this.currentBoard = this.data.find((board:any) => board.id == this.data.length);
+        this.currentBoard = this.data[this.data.length - 1];
         console.log(this.currentBoard);
       }
     });
