@@ -124,7 +124,18 @@ export class NewBoardDialogComponent implements OnInit {
       }
     }
     else {
-      return false;
+      let columns:any[] = []
+      this.newBoard.columns.forEach((element:any) => {
+        if (element.name != '') {
+          columns.push(element);
+        }
+      });
+      if (columns.length == 0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
   createBoard(e:Event, form:any) {

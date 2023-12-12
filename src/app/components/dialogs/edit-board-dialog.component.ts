@@ -111,7 +111,18 @@ export class EditBoardDialogComponent implements OnInit {
       }
     }
     else {
-      return false;
+      let columns:any[] = []
+      this.currentBoard.columns.forEach((element:any) => {
+        if (element.name != '') {
+          columns.push(element);
+        }
+      });
+      if (columns.length == 0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
   editBoard(e: Event, form:any) {
