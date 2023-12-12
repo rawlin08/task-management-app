@@ -27,6 +27,7 @@ import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog.com
 import { ViewTaskDialogComponent } from './components/dialogs/view-task-dialog.component';
 import { EditBoardDialogComponent } from './components/dialogs/edit-board-dialog.component';
 import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog.component';
+import { NewColumnDialogComponent } from './components/dialogs/new-column-dialog.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog.c
     NewTaskDialogComponent,
     ViewTaskDialogComponent,
     EditBoardDialogComponent,
-    EditTaskDialogComponent
+    EditTaskDialogComponent,
+    NewColumnDialogComponent
   ],
   imports: [
     BrowserModule,
