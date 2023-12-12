@@ -27,7 +27,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
           <label>Board Columns</label>
           <mat-hint class="one">*at least one (1) required</mat-hint>
           <div *ngFor="let column of currentBoard.columns">
-            <input [(ngModel)]="column.name" id="editcolumn" [placeholder]="column.placeholder" [name]="column.id" type="text">
+            <input required [(ngModel)]="column.name" id="editcolumn" [placeholder]="column.placeholder" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><svg class="icon"><use href="#icon-delete"></use></svg></button>
           </div>
         </div>
@@ -92,7 +92,6 @@ export class EditBoardDialogComponent implements OnInit {
   }
   currentBoard:any = JSON.parse(JSON.stringify(this.data));
   titleFormControl = new FormControl(this.currentBoard.name, [Validators.required]);
-  columnNameFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
 
   place:boolean = false;
@@ -117,10 +116,18 @@ export class EditBoardDialogComponent implements OnInit {
   }
   editBoard(e: Event, form:any) {
     e.preventDefault();
+    // SEE IF COLUMN NAMES ARE BLANK
+    let columns:any[] = [];
+    this.currentBoard.columns.forEach((element:any) => {
+      if (element.name != '') {
+        columns.push(element);
+      }
+    });
+
     this.board = {
       id: this.currentBoard.id,
       name: form.elements.name.value,
-      columns: this.currentBoard.columns
+      columns: columns
     }
     
     let index = this.todoData.indexOf(this.todoData.find((board:any) => board.id == this.currentBoard.id));
@@ -139,7 +146,15 @@ export class EditBoardDialogComponent implements OnInit {
       this.currentBoard.columns[0].name = '';
     }
   }
+  getRandomColor(min:any, max:any) {
+    let r =  min + Math.floor(Math.random() * (max - min + 1));
+    let g =  min + Math.floor(Math.random() * (max - min + 1));
+    let b =  min + Math.floor(Math.random() * (max - min + 1));
+    let rgb = `rgb(${r},${g},${b})`;
+    return rgb;
+  }
   addColumn() {
+    let color = this.getRandomColor(0, 255)
     const columnIDs = this.currentBoard.columns.map((object:any) => {
       return object.id;
     })
@@ -150,6 +165,7 @@ export class EditBoardDialogComponent implements OnInit {
       id: maxID + 1,
       name: '',
       tasks: [],
+      color: color,
       placeholder: 'e.g. Todo'
     })
     console.log(this.currentBoard);

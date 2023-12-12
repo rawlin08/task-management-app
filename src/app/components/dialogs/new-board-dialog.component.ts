@@ -26,18 +26,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
         </div>
         <div #columnNames class="columns input">
           <label>Board Columns</label>
+          <mat-hint class="one">*at least one (1) required</mat-hint>
           <div *ngFor="let column of newBoard.columns">
-            <input required [ngClass]="columnNameFormControl.hasError('required') && columnNameFormControl.touched == true && column.id == 1 ? 'error' : ''" required matInput [errorStateMatcher]="matcher" [formControl]="column.id == 1 ? columnNameFormControl : place" [(ngModel)]="column.name" id="columnName" placeholder="e.g. Todo" [name]="column.id" type="text">
+            <input required [(ngModel)]="column.name" id="columnName" placeholder="e.g. Todo" [name]="column.id" type="text">
             <button type="button" (click)="deleteColumn(column.id)"><svg class="icon"><use href="#icon-delete"></use></svg></button>
-            <mat-hint *ngIf="column.id == 1">*required</mat-hint>
-            <mat-error *ngIf="columnNameFormControl.hasError('required') && columnNameFormControl.touched == true && column.id == 1">Can't be empty</mat-error>
           </div>
         </div>
       </form>
     </mat-dialog-content>
     <mat-dialog-actions class="newBoard">
       <button type="button" (click)="addColumn()">+ Add New Column</button>
-      <button [disabled]="titleFormControl.hasError('required') || columnNameFormControl.hasError('required')" mat-dialog-close="create" (click)="createBoard($event, form)">Create New Board</button>
+      <button [disabled]="getVal()" mat-dialog-close="create" (click)="createBoard($event, form)">Create New Board</button>
     </mat-dialog-actions>
   </div>
   `,
@@ -96,7 +95,6 @@ export class NewBoardDialogComponent implements OnInit {
     this.todoData = JSON.parse(localStorage.getItem('boards')!);
   }
   titleFormControl = new FormControl('', [Validators.required]);
-  columnNameFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
 
   place:any;
@@ -106,15 +104,39 @@ export class NewBoardDialogComponent implements OnInit {
       {
         id: 1,
         name: '',
-        tasks: []
+        tasks: [],
+        color: this.getRandomColor(0, 255),
+        placeholder: 'e.g. Todo'
       }
     ]
   };
 
+  getVal() {
+    if (this.titleFormControl.hasError('required')) {
+      return true;
+    }
+    if (this.newBoard.columns.length == 1) {
+      if (this.newBoard.columns[0].name == '') {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
   createBoard(e:Event, form:any) {
     e.preventDefault();
   
-    if (!this.titleFormControl.hasError('required') && !this.columnNameFormControl.hasError('required')) {
+    let columns:any[] = [];
+    this.newBoard.columns.forEach((element:any) => {
+      if (element.name != '') {
+        columns.push(element);
+      }
+    });
+    if (!this.titleFormControl.hasError('required')) {
       const boardIDs = this.todoData.map((object:any) => {
         return object.id;
       })
@@ -128,7 +150,7 @@ export class NewBoardDialogComponent implements OnInit {
       this.newBoard = {
         id: maxID + 1,
         name: form.elements.name.value,
-        columns: this.newBoard.columns
+        columns: columns
       }
       this.todoData.push(this.newBoard);
       this.updateLocalStorage();
@@ -145,7 +167,15 @@ export class NewBoardDialogComponent implements OnInit {
       this.newBoard.columns[0].name = '';
     }
   }
+  getRandomColor(min:any, max:any) {
+    let r =  min + Math.floor(Math.random() * (max - min + 1));
+    let g =  min + Math.floor(Math.random() * (max - min + 1));
+    let b =  min + Math.floor(Math.random() * (max - min + 1));
+    let rgb = `rgb(${r},${g},${b})`;
+    return rgb;
+  }
   addColumn() {
+    let color = this.getRandomColor(0, 255);
     const columnIDs = this.newBoard.columns.map((object:any) => {
       return object.id;
     })
@@ -154,7 +184,9 @@ export class NewBoardDialogComponent implements OnInit {
     this.newBoard.columns.push({
       id: maxID + 1,
       name: '',
-      tasks: []
+      tasks: [],
+      color: color,
+      placeholder: 'e.g. Todo'
     })
   }
 }
