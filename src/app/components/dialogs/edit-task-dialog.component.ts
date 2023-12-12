@@ -41,9 +41,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   </div>
   `,
   styles: [`
-  .noDelete {
-    display: none;
-  }
   mat-select {
     outline: 1px solid var(--gray) !important;
     color: var(--white) !important;
