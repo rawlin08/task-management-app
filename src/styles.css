@@ -226,7 +226,7 @@ mat-dialog-content {
     color: var(--text-color);
     border: 1px solid var(--input-border-color);
     padding: 8px 16px;
-    font-size: 13px;
+    font-size: 16px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 23px;
     resize: none;
