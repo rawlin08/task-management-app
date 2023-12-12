@@ -187,7 +187,12 @@ export class AppComponent implements OnInit {
       this.data = boards.boards;
     }
 
-    this.currentBoard = this.data.find((board:any) => board.id == 1);
+    if (this.data.length == 0) {
+      this.currentBoard = []
+    }
+    else {
+      this.currentBoard = this.data.find((board:any) => board.id == 1);
+    }
     console.log(this.data);
     console.log(this.currentBoard);  
   }

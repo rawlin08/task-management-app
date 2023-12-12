@@ -6,8 +6,8 @@ import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component'
 @Component({
   selector: 'app-board',
   template: `
-  <app-empty-board *ngIf="app.boardEmpty == true"></app-empty-board>
-  <div cdkDropListGroup *ngIf="app.boardEmpty == false" class="board">
+  <app-empty-board *ngIf="app.data.length == 0"></app-empty-board>
+  <div cdkDropListGroup class="board">
     <div class="column" *ngFor="let column of app.currentBoard.columns">
       <div class="columnName">
         <div class="color" [style]="'backgroundColor: ' + column.color"></div>
@@ -20,7 +20,7 @@ import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component'
         </div>
       </div>
     </div>
-    <button (click)="openNewColumnDialog()" class="newColumnContainer">+ New Column</button>
+    <button *ngIf="app.data.length > 0" (click)="openNewColumnDialog()" class="newColumnContainer">+ New Column</button>
   </div>
   `,
   styles: [`

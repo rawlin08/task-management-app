@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-empty-board',
   template: `
-  <p>This board is empty. Create a new column to get started.</p>
-  <button>+ Add New Column</button>
+  <p>You have no boards. Create a new board to get started.</p>
+  <button (click)="this.app.openNewBoardDialog()">+ Create New Board</button>
   `,
   styles: [`
   p {
@@ -29,5 +30,5 @@ import { Component } from '@angular/core';
   `]
 })
 export class EmptyBoardComponent {
-
+  constructor(public app: AppComponent) {}
 }
