@@ -245,6 +245,7 @@ form {
 .dialog .input {
     display: grid;
     gap: 8px;
+    position: relative;
 }
 .multiInput {
     display: grid;
@@ -254,6 +255,14 @@ form {
     font-size: 12px;
     font-weight: 500;
     color: var(--text-color);
+}
+mat-error {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+}
+.error {
+    outline: 1px solid var(--red);
 }
 
 /* EDIT AND DELETE BUTTONS */
