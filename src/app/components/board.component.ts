@@ -10,7 +10,7 @@ import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component'
   <div cdkDropListGroup *ngIf="app.boardEmpty == false" class="board">
     <div class="column" *ngFor="let column of app.currentBoard.columns">
       <div class="columnName">
-        <div class="color"></div>
+        <div class="color" [style]="'backgroundColor: ' + column.color"></div>
         <h3>{{ column.name }} ({{ column.tasks.length }})</h3>
       </div>
       <div cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="app.drop($event)" class="tasks">
@@ -70,7 +70,6 @@ import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component'
   .color {
     width: 15px;
     height: 15px;
-    background-color: var(--purple);
     border-radius: 50%;
   }
   .taskCard {
