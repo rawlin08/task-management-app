@@ -74,8 +74,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     width: 100%;
   }
   .newBoard > button:first-child {
-    background-color: var(--white);
-    color: var(--purple);
+    background-color: var(--subBttn-background-color);
+    color: var(--subBttn-color);
   }
   .newBoard > button:last-child {
     background-color: var(--purple);

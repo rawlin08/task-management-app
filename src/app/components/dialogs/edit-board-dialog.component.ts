@@ -67,8 +67,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     transition: opacity 0.1s ease-in-out;
   }
   .editBoard > button:first-child {
-    background-color: var(--white);
-    color: var(--purple);
+    background-color: var(--subBttn-background-color);
+    color: var(--subBttn-color);
   }
   .editBoard > button:last-child {
     background-color: var(--purple);
