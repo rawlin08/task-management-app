@@ -1,14 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,17 +20,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       <form #form action="">
         <div class="input">
           <label for="newColumn">Column Name</label>
-          <input [ngClass]="columnNameFormControl.hasError('required') ? 'error' : ''" required matInput [errorStateMatcher]="matcher" [formControl]="columnNameFormControl" placeholder="e.g. Todo" type="text" id="newColumn" name="newColumn">
-          <mat-error *ngIf="columnNameFormControl.hasError('required')">Can't be empty</mat-error>
+          <input [ngClass]="columnNameFormControl.hasError('required') && columnNameFormControl.touched == true ? 'error' : ''" required matInput [errorStateMatcher]="matcher" [formControl]="columnNameFormControl" placeholder="e.g. Todo" type="text" id="newColumn" name="newColumn">
+          <mat-hint class="columnHint">*required</mat-hint>
+          <mat-error *ngIf="columnNameFormControl.hasError('required') && columnNameFormControl.touched == true">Can't be empty</mat-error>
         </div>
       </form>
     </mat-dialog-content>
     <mat-dialog-actions class="newColumnBttns">
-      <button mat-dialog-close="create" (click)="createColumn($event, form)">Create New Column</button>
+      <button [disabled]="columnNameFormControl.hasError('required')" mat-dialog-close="create" (click)="createColumn($event, form)">Create New Column</button>
     </mat-dialog-actions>
   </div>
   `,
   styles: [`
+  .columnHint {
+    margin: -5px 0 0 0;
+  }
   .newColumnBttns {
     display: flex;
     padding: 0 !important;
@@ -50,6 +47,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     width: 100%;
     background-color: var(--purple);
     color: var(--white);
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+  }
+  .newColumnBttns > button:disabled {
+    opacity: 0.3;
+    transition: opacity 0.2s ease-in-out;
   }
   `]
 })
