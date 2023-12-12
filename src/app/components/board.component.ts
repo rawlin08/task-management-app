@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MatDialog } from '@angular/material/dialog';
-
-// Interfaces
-export interface viewTaskData {
-  title:any,
-  description:any,
-  subtasks:any;
-  status:any;
-}
+import { NewColumnDialogComponent } from './dialogs/new-column-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -27,7 +20,7 @@ export interface viewTaskData {
         </div>
       </div>
     </div>
-    <button class="newColumnContainer">+ New Column</button>
+    <button (click)="openNewColumnDialog()" class="newColumnContainer">+ New Column</button>
   </div>
   `,
   styles: [`
@@ -122,4 +115,18 @@ export class BoardComponent {
     let completed = task.subtasks.filter((subtask:any) => subtask.isCompleted == true);
     return completed.length
   }
+
+  openNewColumnDialog() {
+    let newColumnDialogRef = this.dialog.open(NewColumnDialogComponent, {
+      data: this.app.currentBoard
+    })
+
+    newColumnDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result == 'create') {
+        this.app.data = JSON.parse(localStorage.getItem('boards')!);
+        this.app.currentBoard = this.app.data.find((board:any) => board.id == this.app.currentBoard.id);
+      }
+    });
+  };
 }
