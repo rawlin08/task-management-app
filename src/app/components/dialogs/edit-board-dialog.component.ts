@@ -28,7 +28,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
           <mat-hint class="one">*at least one (1) required</mat-hint>
           <div *ngFor="let column of currentBoard.columns">
             <input [(ngModel)]="column.name" id="editcolumn" [placeholder]="column.placeholder" [name]="column.id" type="text">
-            <button type="button" (click)="deleteColumn(column.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
+            <button type="button" (click)="deleteColumn(column.id)"><svg class="icon"><use href="#icon-delete"></use></svg></button>
           </div>
         </div>
       </form>
@@ -46,7 +46,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   .columns > div {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    gap: 10px;
   }
   mat-dialog-content {
     padding: 0 0 12px 0 !important;

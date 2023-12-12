@@ -33,7 +33,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
           <div class="multiInput newSubtasks">
             <div *ngFor="let subtask of newTask.subtasks">
               <input [(ngModel)]="subtask.title" [name]="subtask.id" [placeholder]="subtask.placeholder" id="subdescription" name="subdescription" type="text">
-              <button (click)="deleteSubtask(subtask.id)"><img src="assets/images/icon-cross.svg" alt=""></button>
+              <button (click)="deleteSubtask(subtask.id)"><svg class="icon"><use href="#icon-delete"></use></svg></button>
             </div>
           </div>
           <button class="addSubtaskBtn" type="button" (click)="addSubtask()">+ Add New Subtask</button>
@@ -58,7 +58,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     .subtasks > div > div {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 10px;
     }
     #description {
       height: 112px;
@@ -100,9 +100,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 
     @media (hover: hover) {
-      #subdescription ~ button:hover {
-        color: var(--red);
-      }
       .new > button:hover {
         background-color: var(--light-purple);
         transition: all 0.1s ease-in-out;
