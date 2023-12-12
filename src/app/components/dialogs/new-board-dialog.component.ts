@@ -94,7 +94,6 @@ export class NewBoardDialogComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.todoData = JSON.parse(localStorage.getItem('boards')!);
-    console.log(this.columnNameFormControl);
   }
   titleFormControl = new FormControl('', [Validators.required]);
   columnNameFormControl = new FormControl('', [Validators.required]);
