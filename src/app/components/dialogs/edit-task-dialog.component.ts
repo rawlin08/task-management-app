@@ -1,5 +1,14 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -11,7 +20,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       <form #form action="">
         <div class="name input">
           <label for="title">Title</label>
-          <input #title placeholder="e.g. Take coffee break" id="title" name="title" type="text" [value]="currentTask.title">
+          <input required [ngClass]="titleFormControl.hasError('required') && titleFormControl.touched == true ? 'error' : ''" matInput [errorStateMatcher]="matcher" [formControl]="titleFormControl" #title placeholder="e.g. Take coffee break" id="title" name="title" type="text" [value]="currentTask.title">
+          <mat-hint>*required</mat-hint>
+          <mat-error *ngIf="titleFormControl.hasError('required') && titleFormControl.touched == true">Can't be empty</mat-error>
         </div>
         <div class="description input">
           <label for="description">Description</label>
@@ -36,7 +47,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       </form>
     </mat-dialog-content>
     <mat-dialog-actions class="editTask">
-      <button mat-dialog-close="save" (click)="editTask($event, form)">Save Changes</button>
+      <button [disabled]="titleFormControl.hasError('required')" mat-dialog-close="save" (click)="editTask($event, form)">Save Changes</button>
     </mat-dialog-actions>
   </div>
   `,
@@ -104,6 +115,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     width: 100%;
     font-size: 13px;
     margin: 10px 0 0 0;
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+  }
+  .editTask > button:disabled {
+    opacity: 0.3;
+    transition: opacity 0.2s ease-in-out;
   }
   `]
 })
@@ -115,9 +132,12 @@ export class EditTaskDialogComponent implements OnInit {
       this.addSubtask();
     }
   }
+  currentTask = JSON.parse(JSON.stringify(this.data[0]));
+  
+  titleFormControl = new FormControl(this.currentTask.title, [Validators.required]);
+  matcher = new MyErrorStateMatcher();
 
   todoData:any;
-  currentTask = JSON.parse(JSON.stringify(this.data[0]));
   task:any = {};
   selectedStatus:any = this.currentTask.status
 
