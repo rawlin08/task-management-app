@@ -150,7 +150,7 @@ app-theme-toggle {
 .icon {
     width: 15px;
     height: 15px;
-    color: var(--white);
+    color: var(--gray);
     transition: color 0.1s ease-in-out;
 }
 
